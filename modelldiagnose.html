@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lineare Regression</title>
+  <meta name="description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen.">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Lineare Regression" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
+  <meta name="github-repo" content="systats/linear_regression" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lineare Regression" />
+  
+  <meta name="twitter:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
+  
+
+<meta name="author" content="Simon Roth">
+
+
+<meta name="date" content="2017-11-13">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="reporting.html">
+<link rel="next" href="non-linearitat.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="part"><span><b>I Start</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einstieg</a></li>
+<li class="chapter" data-level="2" data-path="grundlagen.html"><a href="grundlagen.html"><i class="fa fa-check"></i><b>2</b> Grundlagen</a></li>
+<li class="part"><span><b>II Lieneare Regression</b></span></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a></li>
+<li class="chapter" data-level="4" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html"><i class="fa fa-check"></i><b>4</b> LM Modellauswahl</a></li>
+<li class="chapter" data-level="5" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>5</b> Reporting</a></li>
+<li class="chapter" data-level="6" data-path="modelldiagnose.html"><a href="modelldiagnose.html"><i class="fa fa-check"></i><b>6</b> Modelldiagnose</a><ul>
+<li class="chapter" data-level="6.1" data-path="modelldiagnose.html"><a href="modelldiagnose.html#residuenanalyse"><i class="fa fa-check"></i><b>6.1</b> Residuenanalyse</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="modelldiagnose.html"><a href="modelldiagnose.html#linearitat-der-parameter"><i class="fa fa-check"></i><b>6.1.1</b> Linearität der Parameter</a></li>
+<li class="chapter" data-level="6.1.2" data-path="modelldiagnose.html"><a href="modelldiagnose.html#unabhangigkeit-der-residuen"><i class="fa fa-check"></i><b>6.1.2</b> Unabhängigkeit der Residuen</a></li>
+<li class="chapter" data-level="6.1.3" data-path="modelldiagnose.html"><a href="modelldiagnose.html#homoskedastizitat"><i class="fa fa-check"></i><b>6.1.3</b> Homoskedastizität</a></li>
+<li class="chapter" data-level="6.1.4" data-path="modelldiagnose.html"><a href="modelldiagnose.html#normalverteilung-der-residuen"><i class="fa fa-check"></i><b>6.1.4</b> Normalverteilung der Residuen</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="modelldiagnose.html"><a href="modelldiagnose.html#multikolinearitat"><i class="fa fa-check"></i><b>6.2</b> Multikolinearität</a></li>
+<li class="chapter" data-level="6.3" data-path="modelldiagnose.html"><a href="modelldiagnose.html#ausreier"><i class="fa fa-check"></i><b>6.3</b> Ausreißer</a></li>
+<li class="chapter" data-level="6.4" data-path="modelldiagnose.html"><a href="modelldiagnose.html#beipsiel"><i class="fa fa-check"></i><b>6.4</b> Beipsiel</a></li>
+<li class="chapter" data-level="" data-path="modelldiagnose.html"><a href="modelldiagnose.html#references"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="non-linearitat.html"><a href="non-linearitat.html"><i class="fa fa-check"></i><b>7</b> Non-Linearität</a></li>
+<li class="chapter" data-level="8" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimesnionality Reduction</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lineare Regression</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelldiagnose" class="section level1">
+<h1><span class="header-section-number">6</span> Modelldiagnose</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load data</span>
+<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&#39;https://github.com/systats/workshop_data_science/raw/master/Rnotebook/data/ess_workshop.Rdata&#39;</span>))
+<span class="co"># filter data</span>
+
+<span class="kw">library</span>(dplyr)
+ess_ger &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;DE&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age2 =</span> age<span class="op">*</span>age)
+
+fit0 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> ess_ger)
+fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span>left_right <span class="op">+</span><span class="st"> </span>vote_right, <span class="dt">data =</span> ess_ger) 
+fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span>left_right <span class="op">+</span><span class="st"> </span>vote_right <span class="op">+</span><span class="st"> </span>edu <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data =</span> ess_ger)</code></pre></div>
+<p>Im folgenden werden drei potentiellen Spezifikationsprobleme eines Regressionsmodells aufgedeckt. Dazu wird zuerst eine Residuenanalyse durchegführt, die für die Validität der Signifikanztests unablässig ist und immer dokumentiert werden sollte. Des Weiteren werden test zu Multikolinearität der Prädiktoren und Ausreißer-Strategien vorgestellt.</p>
+<div id="residuenanalyse" class="section level2">
+<h2><span class="header-section-number">6.1</span> Residuenanalyse</h2>
+<p>Eine Residuenanalyse dient dazu <strong>Modellannahmen</strong> statistischer Methoden bezüglich der Verteilung der Daten zu überprüfen. Damit soll die Validität und Reliabilität der Ergebnisse sichergestellt werden. Wenn alle Annahmen erfüllt sind, ist die Parameterschätzung effizient unter allen linearen, unverzerrten Schätzern was auch <strong>B</strong>est <strong>L</strong>inear <strong>U</strong>nbiased <strong>E</strong>stimator (BLUE, Gauß-Markov-Theorem) genannt wird <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 120)</span>. Wenn hingegen eine eindeutige Annahmenverletzung vorliegt sind die Parameter verzerrt und können nicht interpretiert werden.</p>
+<p>Zur Prüfung der Modellannahmen werden neben formalen Tests verstärkt Visualisierungen genutzt. So werden Modellierungsprobleme entdeckt und verbessert. Die Chancen der Modell-Verbesserung wahrzunehmen, entspricht der Grundhaltung der explorativen Datenanalyse <a href="http://stat.ethz.ch/~stahel/courses/regression/reg-resanal.pdf">ethz statistics</a>. Es geht hier nicht um präzise mathematische Aussagen, Optimalität von statistischen Verfahren oder um Signifikanz, sondern um Methoden zum kreativen Entwickeln von Modellen, die die Daten gut beschreiben. Je nach Lektüre werden 3 - 10 Modellannahmen angegeben, wobei manchmal auch Multikolinearität und Ausreißer dazu gezählt werden, welche hier separat behandelt werden. Die folgenden vier Annahmen sollten getestet werden:</p>
+<ol style="list-style-type: decimal">
+<li>Linearität der Parameter</li>
+<li>Unabhängigkeit der Residuen</li>
+<li>Homoskedastizität</li>
+<li>Normalverteilung der Residuen:</li>
+</ol>
+<p>Alle benötigten Informationen können mit <code>augment</code> vom broom package extrahiert werden.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">results &lt;-<span class="st"> </span><span class="kw">augment</span>(fit2, ess_ger)</code></pre></div>
+<div id="linearitat-der-parameter" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Linearität der Parameter</h3>
+<p><em>The most important mathematical assumption of LM is that its deterministic components is a linear function of the seperate predictors: <span class="math inline">\(y = \beta_1 x_1 + \beta_2 x_2 + ...\)</span></em> <span class="citation">(Gelman and Hill <a href="dimesnionality-reduction.html#ref-gelman2007">2007</a>: 45)</span>. Die Lineare Regression schätzt die <span class="math inline">\(\beta\)</span> Parameter intrinsisch linear <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 207)</span>. Nicht lineare Assoziationen sind ohne zusätzliche Spezifikationen nicht erfassbar. Allerdings wird jeder Parameter separat (partiell) geschätzt (Additivität), wodurch die x-Variablen <em>nicht-linear</em> transformiert und trotzdem die Parameter linear interpretiert werden können <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 211)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(left_right, imm_econ)) <span class="op">+</span><span class="st"> </span><span class="co"># aes(x, y)</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> .<span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> F, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) 
+
+<span class="kw">ggplot</span>(results, <span class="kw">aes</span>(edu, imm_econ)) <span class="op">+</span><span class="st"> </span><span class="co"># aes(x, y)</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> .<span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> F, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) </code></pre></div>
+<p><img src="linear_model_files/figure-html/fit2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>Die blaue Linie zeigt den linearen Zusammenhang zwischen x und y. Durch <code>method = &quot;lm&quot;</code> kann das einfach dargestellt werden. Die Steigungen der gezeigten Regressionsgeraden entsprechen den geschätzten Parametern. Zusätzlich kann durch <code>method = &quot;loess&quot;</code> (rot) eine robuste Glättungsmethode eingesetzt werden, die auch nicht-lineare Tendenzen identifiziert und Ausreißer ignoriert. Das Streudiagramm für <code>engage_soc</code> und <code>gov_cens</code> zeigt einen eindeutig positiv, linearen Zusammenhang an. Zwar weißt die loess Funktion des rechten Streudiagramms für <code>pol_stability</code> auf eine nicht-linearen Zusammenhang hin, doch immerhin stellt die Regressionsgerade eine gute Approximation dar.</p>
+</div>
+<div id="unabhangigkeit-der-residuen" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Unabhängigkeit der Residuen</h3>
+<p>Sind die unbeobachteten Fehler <span class="math inline">\(\varepsilon_i\)</span> unabhängig und unkorreliert zu x geschätzt <span class="citation">(Gelman and Hill <a href="dimesnionality-reduction.html#ref-gelman2007">2007</a>: 46)</span>? Zwar ist der bedingte Erwartungswert zwischen Prädikatoren und den Residuen per (OLS) Definition Null, dennoch sollte diese Annahme getestet werden, da durch Spezifikationsfehler z.B. Autokorrelation<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> oder <em>omitted variable bias</em> die Standardfehler falsch geschätzt werden könnten.</p>
+<p><span class="math display">\[cov(x_i,\varepsilon_i) = 0\]</span></p>
+<p>Um die Unabhängigkeit der Residuen zu testen, wird für jede Variable separat ein eigens Streudiagramm erstellt. Diese werden dann nach auffälligen Datenmustern (Korrelationen) untersucht. Wieder kommt neben <code>lm</code> auch <code>loess</code> zum Einsatz.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> results, <span class="kw">aes</span>(<span class="dt">x =</span> left_right, <span class="dt">y =</span> .resid)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> .<span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> F) 
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> results, <span class="kw">aes</span>(<span class="dt">x =</span> edu, <span class="dt">y =</span> .resid)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> .<span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> F) </code></pre></div>
+<p><img src="linear_model_files/figure-html/other2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>Die blaue Linie symbolisiert die Regressionsgerade und darum streuen die unstandardisierten Residuen. Die Kernstreuung der Residuen (exklusive Ausreißer) scheint für beide Variablen unkorreliert zu sein. Neben einigen wenigen Ausreißern scheint keine der Variablen eine systematische Korrelation zu den Residuen zu besitzen.</p>
+<div id="omitted-variable-bias" class="section level4">
+<h4><span class="header-section-number">6.1.2.1</span> Omitted Variable Bias</h4>
+<p>Doch was passiert wenn eine wichtige Variable/ Erklräungsfaktor vergessen wird? Die Fehlspezifikation führt zu einer Verzerrung der anderen Parameter. Diese Verzerrung wird als OVB bezeichnet. Angenommen man möchte die Stabilität in Autokratien erklären, so ist Repression ein guter Erklärungsfaktor.</p>
+<p><span class="math display">\[Stabilität_i = \beta_0 + \beta_1 Repression_i + \varepsilon_i\]</span></p>
+<p>Allerdings sicherlich nicht der Einzige. Sicherlich spielen Legitimität, ökonomische Performanz etc. auch eine große Rolle. Angenommen, das wahre Modell sei gegeben durch zwei Prädiktoren:</p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \varepsilon_i\]</span> Durch eine Fehlspezifikation betrachten wir aber das Modell mit nur einer unabhängigen Variable, d.h. <span class="math inline">\(x_{2i}\)</span> ist unbeobachtet und damit eine so genannte <strong>omitted variable</strong>:</p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_{1i} + \tilde \varepsilon_i\]</span></p>
+<p>Der Fehlerterm <span class="math inline">\(\tilde \varepsilon_i = \beta_2 x_{2i} + \varepsilon_i\)</span> beinhaltet nun den unbeobachteten Faktor.</p>
+<p><span class="math display">\[\hat \beta_1 = \beta_{1}^* + \frac{\sum^N_{i=1} (x_{1i}-\bar x_1) \varepsilon_i}{\sum^N_{i=1} (x_{1i}-\bar x_1)^2} = \beta_{\text{true}} + 0\]</span></p>
+<p>Da Gauss-Markov: <span class="math inline">\(E(x_i|\varepsilon_i) = 0\)</span> Unäbhängigkeit der Residuen fordert, welche nicht mehr gegeben ist, folgt <span class="math inline">\(E[x_{1i}|\beta_2 x_{2i} + \varepsilon_i] \neq 0\)</span>.</p>
+<p><span class="math display">\[\hat \beta_1 = \beta_{1}^* + \frac{\sum^N_{i=1} (x_{1i}-\bar x_1) (\beta_2 x_{2i} + \varepsilon_i)}{s_{x_1}^2}\]</span></p>
+<p>Der Erwartungswert</p>
+<p><span class="math display">\[E[\hat \beta_1] \rightarrow^p \beta_{1}^* + \beta_2 \frac{cov(x_{1},  x_{2})}{\sigma_{x_1}^2}\]</span> <span class="math display">\[E[\hat \beta_1] = \beta_{1}^* + \beta_2 \text{bias}^2\]</span> <span class="math display">\[E[\hat \beta_1] \neq \beta_{1}^*\]</span></p>
+<p>Das Problem liegt nun darin, dass wenn <span class="math inline">\(x_1\)</span> und <span class="math inline">\(x_2\)</span> korreliert sind.</p>
+</div>
+</div>
+<div id="homoskedastizitat" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> Homoskedastizität</h3>
+<p>Die Fehlervarianz <span class="math inline">\(\varepsilon_i\)</span> ist homoskedatisch, wenn die Residuen zufällig, gleichverteilt um <span class="math inline">\(\hat y\)</span> streuen <span class="citation">(Gelman and Hill <a href="dimesnionality-reduction.html#ref-gelman2007">2007</a>: 46)</span>. Varianzhomogenität besagt, dass die Fehlerstreuung über alle Beobachtungen hinweg identisch verteilt ist <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 242)</span>. Damit wird jedem Fehler das gleich Gewicht zugeschrieben <span class="math inline">\(\varepsilon_i = (y_i-\hat y)^2\)</span>.</p>
+<p><span class="math display">\[var(\varepsilon_i)=\sigma^2\]</span></p>
+<p>Wenn diese Annahme verletzt ist spricht man von Heteroskedatiszität, wodurch zwar die <span class="math inline">\(\beta\)</span> Parameter unverzerrt geschätzt werden, allerdings die Standardfehler <span class="math inline">\(SE(\beta_1)\)</span> unter- oder überschätzt (under-, overestimated) werden <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 243)</span>. Unterschätzung der Standardfehler führt zu erhöhtem Type I Error <span class="math inline">\(\alpha\)</span> (also <span class="math inline">\(H_0\)</span> wird zu häufig verworfen) und eine Unterschätzung reduziert die statistische Power (weniger Teststärke führt zu: <span class="math inline">\(H_0\)</span> wird zu häufig angenommen). Während heteroskedastischen Residuen die Parameter nicht beeinflussen, können die Signifikanztest durch die Verzerrung nicht mehr interpretiert werden. Lösungen:</p>
+<ul>
+<li>die y-Variable transformiert werden<br />
+</li>
+<li>neue Variablen ins Modell aufnehmen (omitted variables, Dummies erstellen für jede Varianzgruppe)</li>
+<li>Robust Huber-White Sandwiche estimator um ungleiche Varianzen zu schätzen (see package ‘sandwich’ Lumley and Zeileis <a href="https://cran.r-project.org/web/packages/sandwich/index.html">2015</a>) oder</li>
+<li>geeignete Panel oder Multilevel Modelle <span class="citation">(Gelman and Hill <a href="dimesnionality-reduction.html#ref-gelman2007">2007</a>)</span>.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">results <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(.fitted, .std.resid)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> F, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(.std.resid)), <span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="kw">sd</span>(.std.resid)),  <span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Standardized Residuals vs Fitted&quot;</span>)
+
+<span class="kw">ggplot</span>(results, <span class="kw">aes</span>(.fitted, <span class="kw">sqrt</span>(.std.resid))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Scale-Location&quot;</span>)</code></pre></div>
+<p><img src="linear_model_files/figure-html/homo2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>Auf der x-Achse wurden die geschätzten Werte (<span class="math inline">\(\hat y_i = \beta_0 + \beta_1x_i\)</span>) und auf der y-Achse die unstandardisierten Residuen abgetragen. Die zwei gestrichelten, horizontalen Linien umfassen 68,3% der Fälle und unterstützen dabei die Kernstreuung visuell zu identifizieren. Abgesehen von ein paar wenigen Ausreißern streuen die Residuen gleichverteilt um die Vorhersage.</p>
+<p>Zur abschließenden Klarheit kann ein Levene-Test durchgeführt werden <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 248)</span>, dessen Nullhypothese lautet H0: <em>die Varianzunterschiede zwischen den betrachteten Gruppen sind gleich Null</em>. Zur Durchführung des Levine-Tests muss eine Gruppenvariable erstellt werden, welche die visuell inspizierten Varianzgruppen in einem Vektor repräsentieren. Wird der Test signifikant (<span class="math inline">\(p&lt;0.05^*\)</span>) ist die Annahme verletzt und man sollte zu Methoden zur robusten Schätzung der Standardfehler (SE) greifen.</p>
+<p>Alternativ kann eine weitere Regression getestet werden um einen Trend der Residuen zu identifizieren.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(<span class="kw">abs</span>(<span class="kw">residuals</span>(fit2))<span class="op">~</span><span class="kw">fitted</span>(fit2)) <span class="op">%&gt;%</span>
+<span class="st">  </span>summary</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = abs(residuals(fit2)) ~ fitted(fit2))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.9948 -1.0563 -0.2796  0.7667  5.6979 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   2.40650    0.21908   10.98  &lt; 2e-16 ***
+## fitted(fit2) -0.10878    0.03726   -2.92  0.00353 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.335 on 2719 degrees of freedom
+## Multiple R-squared:  0.003125,   Adjusted R-squared:  0.002759 
+## F-statistic: 8.525 on 1 and 2719 DF,  p-value: 0.003532</code></pre>
+<div id="gewichtete-lineare-regression" class="section level4">
+<h4><span class="header-section-number">6.1.3.1</span> Gewichtete lineare Regression</h4>
+<p>Die Varianzen der einzelnen Zufallsfehler, die wir mit <span class="math inline">\(\sigma_i^2 = \sum \varepsilon_i^2\)</span> bezeichnen wollen, sollen nun nicht mehr als gleich <span class="math inline">\(\sigma^2\)</span> vorausgesetzt werden. Dann ist es sicher sinnvoll, den Beobachtungen mit kleinerer Zufallsstreuung, also den präziseren Beobachtungen, in der Regressionsrechnung grösseres Gewicht zu geben. Statt der gewöhnlichen Quadratsumme SSQ(E) kann man eine gewichtete Version davon, <span class="math inline">\(\sum w_iR^2_i\)</span>, minimieren. Die Gewichte <span class="math inline">\(w_i\)</span> sollen für steigende <span class="math inline">\(\sigma_i\)</span> fallen. Nach dem Prinzip der Maximalen Likelihood ist <span class="math inline">\(w_i = 1/\sigma^2_i\)</span> optimal.</p>
+</div>
+</div>
+<div id="normalverteilung-der-residuen" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> Normalverteilung der Residuen</h3>
+<p>Die Normalverteilung der Residuen <em>is the generally the least important assumption</em> <span class="citation">(Gelman and Hill <a href="dimesnionality-reduction.html#ref-gelman2007">2007</a>: 46)</span>. Die Schätzung der <span class="math inline">\(\beta\)</span> Parameter ist davon überhaupt nicht beeinflusst. Die Signifikanz welche auf asymptotisch, normal verteilten Zufallsvariablen beruht hingegen schon <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 193)</span>.</p>
+<p><span class="math display">\[\varepsilon_i \sim N(0, \sigma^2)\]</span></p>
+<p>Sollte ein Modell alle Annahmen erfüllen, spricht man von <em>independent and identically distributed errors</em> (iid). Anders formuliert - konsistente, erwartungstreue und normal verteilte Fehler.</p>
+<p><span class="math display">\[\varepsilon_i \stackrel{iid}{\sim} N(0, \sigma^2)\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> results, <span class="kw">aes</span>(.std.resid)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Standardnormalverteilung der Residuen&quot;</span>)
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> results, <span class="kw">aes</span>(<span class="dt">sample =</span> .std.resid)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_qq</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Q-Q Plot&quot;</span>)</code></pre></div>
+<p><img src="linear_model_files/figure-html/nromal2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>Das kann mit einer einfachen Häufigkeitsverteilung der Residuen visuell eingeschätzt werden. Folgt die empirische Verteilung (schwarz) der theoretischen Normalverteilung (rot)? Die Residuen streuen annähernd normal verteilt um 0 mit einer konstanten Varianz. Beim Q-Q-Plot sollten die Punkte so nahe wie möglich an der roten Linie liegen. Abgesehen von ein paar Ausreißern am Ende der Verteilung sind die annähernd Residuen normal verteilt.</p>
+</div>
+</div>
+<div id="multikolinearitat" class="section level2">
+<h2><span class="header-section-number">6.2</span> Multikolinearität</h2>
+<p>(Multi-) Kollinearität beschreibt wie stark zwei (oder mehrere) unabhängige x-Variablen linear voneinander abhängig sind <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 225)</span>. Eine schwache bis mittlere Korrelation zwischen den x-Variablen ist unproblematisch, da das statistische Modell die Parameter isoliert schätzt. Problematisch hingegen wird es, wenn starke bis perfekte ML vorliegt, da die Standardfehler der parameter überschätzt und die wahren Effekte jeder einzelnen Variablen nicht mehr identifiziert werden können. Der gemeinsame Informationsanteil zweier Variablen kann durch eine Hilfregression definiert werden</p>
+<p><span class="math display">\[x_{i1} = \gamma_1 x_{i2} +  r_i\]</span></p>
+<p>Schätze <span class="math inline">\(\gamma_1\)</span> mit OLS und berechne die Residuen</p>
+<p><span class="math display">\[\hat r_i = x_{i1} - \gamma_1 x_{i2}\]</span></p>
+<p>Der SChätzer <span class="math inline">\(\hat \beta_1\)</span> ist dann</p>
+<p><span class="math display">\[\hat \beta_1 = \frac{\sum^N_{i=1} \hat r_i y_i}{\sum^N_{i=1} \hat r_i^2}\]</span></p>
+<p>In einer multivariaten Regression wird nur der Teil der Variation von <span class="math inline">\(x_1\)</span> genutzt, die nicht mit <span class="math inline">\(x_2\)</span> korreliert ist um den Parameter zu identifizieren. Wir schätzen den Effekt von <span class="math inline">\(x_1\)</span> auf <span class="math inline">\(y\)</span>, nachdem wir den Einfluss von <span class="math inline">\(x_2\)</span> auf <span class="math inline">\(x_1\)</span> herausgerechnet haben (<strong>partialled out</strong>).</p>
+<p>Gründe für starke oder perfekte ML:</p>
+<ul>
+<li>Eine Lineartransformation eines Prädiktors (z.B. Zensur und Zensur100 = 100 × Zensur)</li>
+<li>Ein aus anderen Prädiktoren abgeleiteter Faktor (z.B. ES = 1 − EL)</li>
+<li>Ein konstanter Prädiktor (kollinear zum Intercept)</li>
+<li>Berücksichtigung aller Merkmalsausprägungen einer qualitativen Variable (z.B. Geschlecht) als Dummyvariablen ohne Verwendung einer Referenzkategorie</li>
+</ul>
+<p>Was gilt nun aber als starke Multikolinearität? Alle Prädiktoren sind üblicherweise mehr oder weniger korreliert, so dass eine gewisse (aber nicht starke oder perfekte) Multikollinearität vorliegt. Dies ist ja gerade der Grund dafür, Kontrollvariablen aufzunehmen. Je stärker jedoch die Abhängigkeit zwischen den x-Variablen, desto schwieriger wird die Schätzung ihres isolierten Einflusses auf y.</p>
+<p>Eine Möglichkeit Kolinearität zu identifizieren ist eine bivariate Korrelationstabelle auf Koeffizienten größer 0.8 zu untersuchen. Allerdings wird so nur jedes Variablenpaar getrennt betrachtet. Soll hingegen Multikolinearität untersucht werden, kommt der Toleranz-Test zum Einsatz, welcher den speraten Erklärungsbeitrag jeder X- Variablen nach Kontrolle der übrigen Variablen berechnet (c.p) <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 231)</span>.</p>
+<p><span class="math display">\[T_p = 1−R_{x_p|x_{-p}}^2\]</span></p>
+<p>Ein Wert von kleiner 0.2 deutet auf eine starke Multikollinearität hin (lediglich ein Fünftel eigene Varianz). Werte nahe 0 implizieren, dass die jeweilige <span class="math inline">\(x_k\)</span>-Variable nur noch sehr wenig eigene Erklärungsanteile erbringt bzw. umgekehrt. Liegen viele niedrige Toleranzwerte vor, sollten Stabilitätstests durchgeführt werden.</p>
+<p>Häufiger jedoch wird der <strong>Variance Inflation Factor</strong> berechnet, der auf die Logik der Toleranz zurückgreift, allerdings eine bessere Interpretation bietet.</p>
+<p><span class="math display">\[VIF(\hat \beta_p)= \frac{1}{T_p} = \frac{1}{(1-R_{x_p|x_{-p}}^2)}\]</span></p>
+<p>Je größer der VI-Faktor einer Variablen p, desto stärker sind die Hinweise auf Multikollinearität. Als Daumenregel werden häufig VIF-Werte von über 10 als <em>zu hoch</em> eingestuft. Andere sehen <span class="math inline">\(VIF_p &gt; 5\)</span> schon zu hoch, da die die Erklärungsleistung einer Variable damit <span class="math inline">\(\rightarrow 1/0.2\)</span> unter 20% fällt <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 232)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(car)
+car<span class="op">::</span><span class="kw">vif</span>(fit2)</code></pre></div>
+<pre><code>## left_right vote_right        edu        age     gender 
+##   1.052135   1.041137   1.041530   1.034396   1.011314</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vif_data &lt;-<span class="st"> </span><span class="kw">tidy</span>(<span class="kw">vif</span>(fit2))
+
+vif_data <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(names, x)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">5</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">10</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="fl">4.7</span>, <span class="dt">label =</span> <span class="st">&quot;gut&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="fl">9.7</span>, <span class="dt">label =</span> <span class="st">&quot;akzeptabel&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Variance Inflation Factors (multicollinearity)&quot;</span>) </code></pre></div>
+<p><img src="linear_model_files/figure-html/vif-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Die VIF-Werte werden wie das <span class="math inline">\(R^2\)</span> direkt durch den Stichprobenumfang und die Stichprobenvarianz beeinflusst <span class="citation">(O’brien <a href="dimesnionality-reduction.html#ref-o2007">2007</a>)</span>. Außerdem steigt natürlich mit der Anzahl der Prädiktoren auch die Wahrscheinlichkeit Multikolinearität zu erhalten. Wenn hohe VIF Werte vorliegen stehen mindestens diese Optionen zur Verfügung:</p>
+<ol style="list-style-type: decimal">
+<li>entferne die problematische(n) Variable(n).</li>
+<li>komprimiere hoch korrelierten Variablen in eine Dimension (additiven/multiplikativer Index, PCA, EFA)</li>
+</ol>
+</div>
+<div id="ausreier" class="section level2">
+<h2><span class="header-section-number">6.3</span> Ausreißer</h2>
+<p>OLS minimiert die quadratischen Residuen <span class="math inline">\(\sum \varepsilon_i^2\)</span>. Dadurch können Ausreißer die Regressionsgerade sensible beeinflussen, was nach Ausschluss der extremen Werte zu signifikant verschiedenen Ergebnissen führen kann. Ausreißer können Messfehler oder einfach nur extreme Ausprägungen darstellen. Darum sollte transparent dokumentiert werden, wie stabil die Ergebnisse vor und nach dem Ausschluss sind.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">results <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(.cooksd) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">row_id =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(row_id, .fitted, .resid) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>)</code></pre></div>
+<pre><code>##   row_id  .fitted   .resid
+## 1   2701 4.776867 5.223133
+## 2   2712 4.412014 5.587986
+## 3   2713 4.368222 5.631778
+## 4   2720 3.681296 6.318704
+## 5   2721 2.898986 6.101014</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Points size reflecting Cook&#39;s distance</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> results, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid, <span class="dt">size =</span> .cooksd)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">colour =</span> <span class="st">&quot;firebrick3&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> .<span class="dv">5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">rownames</span>(results))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_size_area</span>(<span class="st">&quot;Cook’s distance&quot;</span>)</code></pre></div>
+<p><img src="linear_model_files/figure-html/out-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>jacknife &amp; bootstrap: both test and solution</p>
+</div>
+<div id="beipsiel" class="section level2">
+<h2><span class="header-section-number">6.4</span> Beipsiel</h2>
+<p><img src="https://raw.githubusercontent.com/sjPlot/devel/master/man/figures/logo.png" align="right", width = "10%"></p>
+<p>Die oben einzeln vorgestellten Konzepte zur Residuenanalyse werden beispielhaft mit dem <code>sjPlot</code> package durchgeführt. Mit dem Argument <code>type = &quot;ma&quot;</code> für <em>model assessment</em> können alle Modellannahmen getestet werden. <strong>ACHTUNG</strong>: Die Anforderungen in deinem Kurs können von dieser praktischen Vorgehensweise abweichen.</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_lm.html">more information on ggfortify</a></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggfortify)
+<span class="kw">autoplot</span>(fit2, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">label.size =</span> <span class="dv">3</span>) <span class="co">#which = 1:6</span></code></pre></div>
+<p><img src="linear_model_files/figure-html/sjp1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sjPlot)
+fit2_ma &lt;-<span class="st"> </span><span class="kw">sjp.lm</span>(fit2, <span class="dt">type =</span> <span class="st">&quot;ma&quot;</span>)</code></pre></div>
+<pre><code>## NULL</code></pre>
+<p><img src="linear_model_files/figure-html/sjp2-1.png" width="480" style="display: block; margin: auto;" /><img src="linear_model_files/figure-html/sjp2-2.png" width="480" style="display: block; margin: auto;" /><img src="linear_model_files/figure-html/sjp2-3.png" width="480" style="display: block; margin: auto;" /><img src="linear_model_files/figure-html/sjp2-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Die erste Tabelle zeigt die Modellgüte für das ursprüngliche Model (<code>original</code>) in Form von <span class="math inline">\(R^2\)</span> and AIC. Darunter wird die Modellgüte für das aktualisierte Modell (<code>updated</code>) berichtet, welches automatisch die folgenden Ausreißer identifiziert, ausgeschlossen und das Regressionsmodel neu berechnet hat:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2_ma<span class="op">$</span>outlier</code></pre></div>
+<p>Die Unterschiede sind verschwindend gering, dennoch werden die Ausreißer ausgeschlossen (nicht notwendig)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">no_outliers &lt;-<span class="st"> </span>ess_ger[ <span class="op">-</span><span class="st"> </span>fit2_ma<span class="op">$</span>outlier, ] <span class="co"># Zwei Ausreißer entfernt</span></code></pre></div>
+<p>Als nächstes wird das statistische Modell auf Multikolinearität untersucht. Der Variance Inflation Factor für beide x-Variablen ist weit unter der geforderten Grenzwerten. Das statistische Modell hat damit keine Probleme mit zu hoch korrelierten Variablen.</p>
+<p>Nun werden die BLUE Annahmen getestet. Die Residuen folgen der theoretischen Normalverteilung (QQ-Plot) und nur die angegeben Ausreißer weichen signifikant davon ab. Auch das Histogram unterstützt die Annahme von normal verteilten Fehlern <span class="math inline">\(\varepsilon_i \sim N(0, \sigma^2)\)</span>.</p>
+<p>Zuletzt wird die Streuung der Residuen betrachtet. Die Residuen streuen homoskedastisch um die Vorhersage und keine Muster sind identifizierbar. Damit sind die Annahmen <span class="math inline">\(\sum \varepsilon^2 = \sigma^2\)</span> und <span class="math inline">\(cov(x_i, \varepsilon_i) = 0\)</span> erfüllt und die Parameter, sowie Signifikanztest können interpretiert werden.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Wenn <span class="math inline">\(cov(\varepsilon_i, \varepsilon_j) \neq 0\)</span> liegt eine schwere Fehlspezifikation vor. Mit Panel/Multilevel Daten sollten das entsprechenden Modell gewählt werden. Daher wurde keine eigene Annahme dafür getroffen, im Unterschied zu <span class="citation">(Urban and Mayerl <a href="dimesnionality-reduction.html#ref-urban2011">2011</a>: 242)</span><a href="modelldiagnose.html#fnref1">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reporting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="non-linearitat.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

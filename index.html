@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lineare Regression</title>
+  <meta name="description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen.">
+  <meta name="generator" content="bookdown 0.5.8 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Lineare Regression" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
+  <meta name="github-repo" content="systats/linear_regression" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lineare Regression" />
+  
+  <meta name="twitter:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
+  
+
+<meta name="author" content="Simon Roth">
+
+
+<meta name="date" content="2017-11-13">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="grundlagen.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="part"><span><b>I Start</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einstieg</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#desired-features"><i class="fa fa-check"></i><b>1.1</b> Desired Features</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installation-von-r-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installation von R/ RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#wie-r-lernen"><i class="fa fa-check"></i><b>1.3</b> Wie R Lernen?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#wozu-statistik"><i class="fa fa-check"></i><b>1.4</b> Wozu Statistik?</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#reserach-design"><i class="fa fa-check"></i><b>1.5</b> Reserach Design</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="grundlagen.html"><a href="grundlagen.html"><i class="fa fa-check"></i><b>2</b> Grundlagen</a><ul>
+<li class="chapter" data-level="2.1" data-path="grundlagen.html"><a href="grundlagen.html#messnivaus"><i class="fa fa-check"></i><b>2.1</b> Messnivaus</a></li>
+<li class="chapter" data-level="2.2" data-path="grundlagen.html"><a href="grundlagen.html#lageparameter"><i class="fa fa-check"></i><b>2.2</b> Lageparameter</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="grundlagen.html"><a href="grundlagen.html#modus"><i class="fa fa-check"></i><b>2.2.1</b> Modus</a></li>
+<li class="chapter" data-level="2.2.2" data-path="grundlagen.html"><a href="grundlagen.html#median"><i class="fa fa-check"></i><b>2.2.2</b> Median</a></li>
+<li class="chapter" data-level="2.2.3" data-path="grundlagen.html"><a href="grundlagen.html#default-sind-quartile"><i class="fa fa-check"></i><b>2.2.3</b> default sind Quartile</a></li>
+<li class="chapter" data-level="2.2.4" data-path="grundlagen.html"><a href="grundlagen.html#median-und-2.-quartil-sind-identisch"><i class="fa fa-check"></i><b>2.2.4</b> Median und 2. Quartil sind identisch</a></li>
+<li class="chapter" data-level="2.2.5" data-path="grundlagen.html"><a href="grundlagen.html#dezile"><i class="fa fa-check"></i><b>2.2.5</b> Dezile</a></li>
+<li class="chapter" data-level="2.2.6" data-path="grundlagen.html"><a href="grundlagen.html#percentile"><i class="fa fa-check"></i><b>2.2.6</b> Percentile</a></li>
+<li class="chapter" data-level="2.2.7" data-path="grundlagen.html"><a href="grundlagen.html#mean"><i class="fa fa-check"></i><b>2.2.7</b> Mean</a></li>
+<li class="chapter" data-level="2.2.8" data-path="grundlagen.html"><a href="grundlagen.html#mode-median-mean-im-vergleich"><i class="fa fa-check"></i><b>2.2.8</b> Mode, Median &amp; Mean im Vergleich</a></li>
+<li class="chapter" data-level="2.2.9" data-path="grundlagen.html"><a href="grundlagen.html#uniqe-as-levels"><i class="fa fa-check"></i><b>2.2.9</b> uniqe as levels!!!</a></li>
+<li class="chapter" data-level="2.2.10" data-path="grundlagen.html"><a href="grundlagen.html#helper-function-for-mode"><i class="fa fa-check"></i><b>2.2.10</b> helper function for Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="grundlagen.html"><a href="grundlagen.html#streuungsparameter"><i class="fa fa-check"></i><b>2.3</b> Streuungsparameter</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="grundlagen.html"><a href="grundlagen.html#varianz"><i class="fa fa-check"></i><b>2.3.1</b> Varianz</a></li>
+<li class="chapter" data-level="2.3.2" data-path="grundlagen.html"><a href="grundlagen.html#standardabweichung"><i class="fa fa-check"></i><b>2.3.2</b> Standardabweichung</a></li>
+<li class="chapter" data-level="2.3.3" data-path="grundlagen.html"><a href="grundlagen.html#geometrie"><i class="fa fa-check"></i><b>2.3.3</b> Geometrie</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="grundlagen.html"><a href="grundlagen.html#kovarianz"><i class="fa fa-check"></i><b>2.4</b> Kovarianz</a></li>
+<li class="chapter" data-level="2.5" data-path="grundlagen.html"><a href="grundlagen.html#korrelation"><i class="fa fa-check"></i><b>2.5</b> Korrelation</a></li>
+</ul></li>
+<li class="part"><span><b>II Lieneare Regression</b></span></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#geometrie-1"><i class="fa fa-check"></i><b>3.1</b> Geometrie</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#simple-lineare-regression"><i class="fa fa-check"></i><b>3.2</b> Simple Lineare Regression</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#interpretation-der-koeffizienten"><i class="fa fa-check"></i><b>3.3</b> Interpretation der Koeffizienten</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#konfidenzintervall"><i class="fa fa-check"></i><b>3.3.1</b> Konfidenzintervall</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#nullhypothesentest"><i class="fa fa-check"></i><b>3.3.2</b> Nullhypothesentest</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#dummies"><i class="fa fa-check"></i><b>3.4</b> Dummies</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#multivariate-regression"><i class="fa fa-check"></i><b>3.5</b> Multivariate Regression</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#standardisierung"><i class="fa fa-check"></i><b>3.6</b> Standardisierung</a></li>
+<li class="chapter" data-level="3.7" data-path="basics.html"><a href="basics.html#ols-schatzung"><i class="fa fa-check"></i><b>3.7</b> OLS Schätzung</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html"><i class="fa fa-check"></i><b>4</b> LM Modellauswahl</a><ul>
+<li class="chapter" data-level="4.1" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#gutemae"><i class="fa fa-check"></i><b>4.1</b> Gütemaße</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#r-squared"><i class="fa fa-check"></i><b>4.1.1</b> R Squared</a></li>
+<li class="chapter" data-level="4.1.2" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#adjusted-r-squared"><i class="fa fa-check"></i><b>4.1.2</b> Adjusted R Squared</a></li>
+<li class="chapter" data-level="4.1.3" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#rse"><i class="fa fa-check"></i><b>4.1.3</b> RSE</a></li>
+<li class="chapter" data-level="4.1.4" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#f-test"><i class="fa fa-check"></i><b>4.1.4</b> F-Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#modellvergleich"><i class="fa fa-check"></i><b>4.2</b> Modellvergleich</a></li>
+<li class="chapter" data-level="4.3" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#best-subset-selection"><i class="fa fa-check"></i><b>4.3</b> Best Subset Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>5</b> Reporting</a><ul>
+<li class="chapter" data-level="5.1" data-path="reporting.html"><a href="reporting.html#tabellen"><i class="fa fa-check"></i><b>5.1</b> Tabellen</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="reporting.html"><a href="reporting.html#stargazer"><i class="fa fa-check"></i><b>5.1.1</b> stargazer</a></li>
+<li class="chapter" data-level="5.1.2" data-path="reporting.html"><a href="reporting.html#texreg"><i class="fa fa-check"></i><b>5.1.2</b> texreg</a></li>
+<li class="chapter" data-level="5.1.3" data-path="reporting.html"><a href="reporting.html#sjplot"><i class="fa fa-check"></i><b>5.1.3</b> sjPlot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="reporting.html"><a href="reporting.html#show-me-your-model"><i class="fa fa-check"></i><b>5.2</b> Show me your model!</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="reporting.html"><a href="reporting.html#coefficient-plot-forest"><i class="fa fa-check"></i><b>5.2.1</b> Coefficient Plot (Forest)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="reporting.html"><a href="reporting.html#marginal-effects"><i class="fa fa-check"></i><b>5.2.2</b> Marginal Effects</a></li>
+<li class="chapter" data-level="5.2.3" data-path="reporting.html"><a href="reporting.html#predicting-values"><i class="fa fa-check"></i><b>5.2.3</b> Predicting values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="modelldiagnose.html"><a href="modelldiagnose.html"><i class="fa fa-check"></i><b>6</b> Modelldiagnose</a><ul>
+<li class="chapter" data-level="6.1" data-path="modelldiagnose.html"><a href="modelldiagnose.html#residuenanalyse"><i class="fa fa-check"></i><b>6.1</b> Residuenanalyse</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="modelldiagnose.html"><a href="modelldiagnose.html#linearitat-der-parameter"><i class="fa fa-check"></i><b>6.1.1</b> Linearität der Parameter</a></li>
+<li class="chapter" data-level="6.1.2" data-path="modelldiagnose.html"><a href="modelldiagnose.html#unabhangigkeit-der-residuen"><i class="fa fa-check"></i><b>6.1.2</b> Unabhängigkeit der Residuen</a></li>
+<li class="chapter" data-level="6.1.3" data-path="modelldiagnose.html"><a href="modelldiagnose.html#homoskedastizitat"><i class="fa fa-check"></i><b>6.1.3</b> Homoskedastizität</a></li>
+<li class="chapter" data-level="6.1.4" data-path="modelldiagnose.html"><a href="modelldiagnose.html#normalverteilung-der-residuen"><i class="fa fa-check"></i><b>6.1.4</b> Normalverteilung der Residuen</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="modelldiagnose.html"><a href="modelldiagnose.html#multikolinearitat"><i class="fa fa-check"></i><b>6.2</b> Multikolinearität</a></li>
+<li class="chapter" data-level="6.3" data-path="modelldiagnose.html"><a href="modelldiagnose.html#ausreier"><i class="fa fa-check"></i><b>6.3</b> Ausreißer</a></li>
+<li class="chapter" data-level="6.4" data-path="modelldiagnose.html"><a href="modelldiagnose.html#beipsiel"><i class="fa fa-check"></i><b>6.4</b> Beipsiel</a></li>
+<li class="chapter" data-level="" data-path="modelldiagnose.html"><a href="modelldiagnose.html#references"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="non-linearitat.html"><a href="non-linearitat.html"><i class="fa fa-check"></i><b>7</b> Non-Linearität</a><ul>
+<li class="chapter" data-level="7.1" data-path="non-linearitat.html"><a href="non-linearitat.html#interaktionen"><i class="fa fa-check"></i><b>7.1</b> Interaktionen</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="non-linearitat.html"><a href="non-linearitat.html#interaktion-zweier-binarer-variablen"><i class="fa fa-check"></i><b>7.1.1</b> Interaktion zweier binärer Variablen</a></li>
+<li class="chapter" data-level="7.1.2" data-path="non-linearitat.html"><a href="non-linearitat.html#interaktion-einer-metrischen-und-einer-binaren-variable"><i class="fa fa-check"></i><b>7.1.2</b> Interaktion einer metrischen und einer binären Variable</a></li>
+<li class="chapter" data-level="7.1.3" data-path="non-linearitat.html"><a href="non-linearitat.html#interaktion-zweier-metrischen-variablen"><i class="fa fa-check"></i><b>7.1.3</b> Interaktion zweier metrischen Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="non-linearitat.html"><a href="non-linearitat.html#logarithmus"><i class="fa fa-check"></i><b>7.2</b> Logarithmus</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="non-linearitat.html"><a href="non-linearitat.html#lin-log"><i class="fa fa-check"></i><b>7.2.1</b> Lin-Log</a></li>
+<li class="chapter" data-level="7.2.2" data-path="non-linearitat.html"><a href="non-linearitat.html#log-lin"><i class="fa fa-check"></i><b>7.2.2</b> Log-Lin</a></li>
+<li class="chapter" data-level="7.2.3" data-path="non-linearitat.html"><a href="non-linearitat.html#log-log"><i class="fa fa-check"></i><b>7.2.3</b> Log-Log</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="non-linearitat.html"><a href="non-linearitat.html#polynome"><i class="fa fa-check"></i><b>7.3</b> Polynome</a></li>
+<li class="chapter" data-level="7.4" data-path="non-linearitat.html"><a href="non-linearitat.html#multigruppenvergleich"><i class="fa fa-check"></i><b>7.4</b> Multigruppenvergleich</a></li>
+<li class="chapter" data-level="7.5" data-path="non-linearitat.html"><a href="non-linearitat.html#segmented-regression"><i class="fa fa-check"></i><b>7.5</b> Segmented Regression</a></li>
+<li class="chapter" data-level="7.6" data-path="non-linearitat.html"><a href="non-linearitat.html#splines"><i class="fa fa-check"></i><b>7.6</b> Splines</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimesnionality Reduction</a><ul>
+<li class="chapter" data-level="8.1" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#k-means-clustering"><i class="fa fa-check"></i><b>8.1</b> k-Means Clustering</a></li>
+<li class="chapter" data-level="8.2" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#pca"><i class="fa fa-check"></i><b>8.2</b> PCA</a></li>
+<li class="chapter" data-level="8.3" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#exploratory-factor-analysis"><i class="fa fa-check"></i><b>8.3</b> Exploratory Factor Analysis</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lineare Regression</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Lineare Regression</h1>
+<h4 class="author"><em>Simon Roth</em></h4>
+<h4 class="date"><em>2017-11-13</em></h4>
+</div>
+<div id="einstieg" class="section level1">
+<h1><span class="header-section-number">1</span> Einstieg</h1>
+<div id="desired-features" class="section level2">
+<h2><span class="header-section-number">1.1</span> Desired Features</h2>
+<ul>
+<li>Bootstrap as ideal inference</li>
+<li><a href="https://mvuorre.github.io/post/2017/better-brms-forest-plots/">brms Meta analysis</a></li>
+</ul>
+</div>
+<div id="installation-von-r-rstudio" class="section level2">
+<h2><span class="header-section-number">1.2</span> Installation von R/ RStudio</h2>
+<p><code>R</code> ist eine Programmiersprache, speziell entwickelt für Statistik. Die Software ist komplett kostenlos und wird unter einer GPL (GNU General Public License) zugänglich gemacht.</p>
+<blockquote>
+<p>We believe free and open source data analysis software is a foundation for innovative and important work in science, education, and industry <a href="https://www.rstudio.com/">(RStudio Homepage)</a>.</p>
+</blockquote>
+<p>Das <code>R</code> Statistiksoftware kann <a href="https://cran.r-project.org/mirrors.html">hier</a> heruntergeladen werden. <code>R</code> kann man sich als Motor vorstellen, nun braucht man noch ein Cockpit. Dazu greift man auf <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a> zurück, eine Software die die Arbeit mit <code>R</code> sehr erleichtert. Eine IDE (Integrated Development Enviroment) wie Rstudio bietet tools wie Syntax Highlighting, Auto-Vervollständigung und bessere Übersicht über Grafiken, Packages und Datensätze.</p>
+<p><img align="center" width="70%" src="images/car_mod.jpg"></p>
+</div>
+<div id="wie-r-lernen" class="section level2">
+<h2><span class="header-section-number">1.3</span> Wie R Lernen?</h2>
+<p>Der richtige Einstieg in R ist entscheidend für die Meisten, auch weiterhin damit zu arbeiten. Daher empfehlen Dozenten das <strong>tidyverse</strong> anstelle von <code>base</code> R zu unterrichten/ lernen. Das Package <code>dplyr</code> z.B. revolutioniert die Datenbearbeitung durch eine einfache und damit menschen-leserliche Syntax. Darauf aufbauend kann mit <code>ggplot2</code> jeglicher Visualisierungswunsch in Minuten publikationsfertig präsentiert werden.</p>
+<div class="figure">
+<img src="images/tidyverse.png" />
+
+</div>
+<p>Hier werden Materialien aus dem <strong>tidyverse</strong> verlinkt:</p>
+<ul>
+<li>A Nice Introduction to <a href="http://uc-r.github.io/ggplot_intro">ggplot2</a></li>
+<li><a href="https://bouchat.github.io/IntroDataMgmt20Jan.html">Introduction and Data Management</a></li>
+<li>Data wrangling with dplyr and tidyr <a href="https://cdn.rawgit.com/AnnArborRUserGroup/Presentations/d19b4faeb64dfe8a7b76ff8056e3981b41215431/2017-05/tidyR_dplyR/2017_05_11_tidy_dplyr_pres.html#1">slides</a></li>
+<li><a href="https://bookdown.org/burak2358/SARP-EN/descriptive-statistics-and-hypthoses-testing.html">statistics bookdown</a></li>
+<li><a href="https://stats.idre.ucla.edu/r/seminars/ggplot2_intro/">Große Einführung in ggplot2</a></li>
+</ul>
+</div>
+<div id="wozu-statistik" class="section level2">
+<h2><span class="header-section-number">1.4</span> Wozu Statistik?</h2>
+<blockquote>
+<p>Statistics is the grammar of science - Karl Pearson</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>In den Sozialwissenschaften werden statistische Analysen eingesetzt um Theorien empirisch zu untersuchen. Dabei werden theoretische Zusammenhänge in Form von Hypothesen (X beeinflusst Y) anhand von Daten getestet (Kausalanalyse).</li>
+<li>Unzählige neue Methoden wurden entwickelt um Vorhersagen aufgrund statistischer Modelle zu treffen. Dabei wird in einem ersten Schritt die Assoziation zwischen X und Y modelliert. Dann folgt die Vorhersage von Y aufgrund neuer X-Observationen.</li>
+</ol>
+</div>
+<div id="reserach-design" class="section level2">
+<h2><span class="header-section-number">1.5</span> Reserach Design</h2>
+<ol style="list-style-type: decimal">
+<li>Testbare Hypothesen aus einem theoretischen Konstrukt ableiten</li>
+<li>statistisches Modell und/oder Methoden auswählen</li>
+<li>Datenbeschaffung
+<ul>
+<li>selber erheben (Survey)</li>
+<li>externe Daten</li>
+</ul></li>
+<li>Datentransformation
+<ul>
+<li>deskriptive Tabellen/Visualisierung der Variablen</li>
+<li>Imputation</li>
+<li>Faktorenanlyse</li>
+</ul></li>
+<li>Mit den Daten das theoretische Modell schätzen (Hypothesen testen)
+<ul>
+<li>Modellauswahl</li>
+<li>Parameter und Hypothesentest präsentieren</li>
+<li>Residuenanalyse</li>
+</ul></li>
+<li>Auswerten und Schlußfolgerungen ziehen</li>
+</ol>
+<p><img align="center" width="70%" src="images/pop/population.png"></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="grundlagen.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>

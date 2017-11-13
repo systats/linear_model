@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lineare Regression</title>
+  <meta name="description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen.">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Lineare Regression" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
+  <meta name="github-repo" content="systats/linear_regression" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lineare Regression" />
+  
+  <meta name="twitter:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
+  
+
+<meta name="author" content="Simon Roth">
+
+
+<meta name="date" content="2017-11-13">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="lm-modellauswahl.html">
+<link rel="next" href="modelldiagnose.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="part"><span><b>I Start</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einstieg</a></li>
+<li class="chapter" data-level="2" data-path="grundlagen.html"><a href="grundlagen.html"><i class="fa fa-check"></i><b>2</b> Grundlagen</a></li>
+<li class="part"><span><b>II Lieneare Regression</b></span></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a></li>
+<li class="chapter" data-level="4" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html"><i class="fa fa-check"></i><b>4</b> LM Modellauswahl</a></li>
+<li class="chapter" data-level="5" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>5</b> Reporting</a><ul>
+<li class="chapter" data-level="5.1" data-path="reporting.html"><a href="reporting.html#tabellen"><i class="fa fa-check"></i><b>5.1</b> Tabellen</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="reporting.html"><a href="reporting.html#stargazer"><i class="fa fa-check"></i><b>5.1.1</b> stargazer</a></li>
+<li class="chapter" data-level="5.1.2" data-path="reporting.html"><a href="reporting.html#texreg"><i class="fa fa-check"></i><b>5.1.2</b> texreg</a></li>
+<li class="chapter" data-level="5.1.3" data-path="reporting.html"><a href="reporting.html#sjplot"><i class="fa fa-check"></i><b>5.1.3</b> sjPlot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="reporting.html"><a href="reporting.html#show-me-your-model"><i class="fa fa-check"></i><b>5.2</b> Show me your model!</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="reporting.html"><a href="reporting.html#coefficient-plot-forest"><i class="fa fa-check"></i><b>5.2.1</b> Coefficient Plot (Forest)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="reporting.html"><a href="reporting.html#marginal-effects"><i class="fa fa-check"></i><b>5.2.2</b> Marginal Effects</a></li>
+<li class="chapter" data-level="5.2.3" data-path="reporting.html"><a href="reporting.html#predicting-values"><i class="fa fa-check"></i><b>5.2.3</b> Predicting values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="modelldiagnose.html"><a href="modelldiagnose.html"><i class="fa fa-check"></i><b>6</b> Modelldiagnose</a></li>
+<li class="chapter" data-level="7" data-path="non-linearitat.html"><a href="non-linearitat.html"><i class="fa fa-check"></i><b>7</b> Non-Linearität</a></li>
+<li class="chapter" data-level="8" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimesnionality Reduction</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lineare Regression</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="reporting" class="section level1">
+<h1><span class="header-section-number">5</span> Reporting</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load data</span>
+<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&#39;https://github.com/systats/workshop_data_science/raw/master/Rnotebook/data/ess_workshop.Rdata&#39;</span>))
+<span class="co"># filter data</span>
+
+<span class="kw">library</span>(dplyr)
+ess_ger &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;DE&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age2 =</span> age<span class="op">*</span>age)
+
+fit0 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> ess_ger)
+fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span>left_right <span class="op">+</span><span class="st"> </span>vote_right, <span class="dt">data =</span> ess_ger) 
+fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span>left_right <span class="op">+</span><span class="st"> </span>vote_right <span class="op">+</span><span class="st"> </span>edu <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data =</span> ess_ger)</code></pre></div>
+<div id="tabellen" class="section level2">
+<h2><span class="header-section-number">5.1</span> Tabellen</h2>
+<div id="stargazer" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> stargazer</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stargazer)
+<span class="kw">stargazer</span>(<span class="kw">list</span>(fit0, fit1, fit2), <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="3">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="3">
+imm_econ
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+<td>
+(3)
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+left_right
+</td>
+<td>
+</td>
+<td>
+-0.187<sup>***</sup>
+</td>
+<td>
+-0.174<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.024)
+</td>
+<td>
+(0.024)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+vote_right1
+</td>
+<td>
+</td>
+<td>
+-1.985<sup>***</sup>
+</td>
+<td>
+-1.991<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.226)
+</td>
+<td>
+(0.224)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+edu
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.162<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.020)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+age
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-0.004<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.002)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+genderMale
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.335<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.086)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+5.831<sup>***</sup>
+</td>
+<td>
+6.745<sup>***</sup>
+</td>
+<td>
+5.841<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.044)
+</td>
+<td>
+(0.112)
+</td>
+<td>
+(0.185)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+2,817
+</td>
+<td>
+2,740
+</td>
+<td>
+2,721
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.000
+</td>
+<td>
+0.059
+</td>
+<td>
+0.087
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.000
+</td>
+<td>
+0.058
+</td>
+<td>
+0.086
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+2.335 (df = 2816)
+</td>
+<td>
+2.253 (df = 2737)
+</td>
+<td>
+2.221 (df = 2715)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+</td>
+<td>
+85.459<sup>***</sup> (df = 2; 2737)
+</td>
+<td>
+52.031<sup>***</sup> (df = 5; 2715)
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="3" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+</div>
+<div id="texreg" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> texreg</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(texreg)
+<span class="kw">screenreg</span>(<span class="kw">list</span>(fit0, fit1, fit2))</code></pre></div>
+<pre><code>## 
+## ==================================================
+##              Model 1      Model 2      Model 3    
+## --------------------------------------------------
+## (Intercept)     5.83 ***     6.74 ***     5.84 ***
+##                (0.04)       (0.11)       (0.18)   
+## left_right                  -0.19 ***    -0.17 ***
+##                             (0.02)       (0.02)   
+## vote_right1                 -1.98 ***    -1.99 ***
+##                             (0.23)       (0.22)   
+## edu                                       0.16 ***
+##                                          (0.02)   
+## age                                      -0.00    
+##                                          (0.00)   
+## genderMale                                0.33 ***
+##                                          (0.09)   
+## --------------------------------------------------
+## R^2             0.00         0.06         0.09    
+## Adj. R^2        0.00         0.06         0.09    
+## Num. obs.    2817         2740         2721       
+## RMSE            2.34         2.25         2.22    
+## ==================================================
+## *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#texreg(list(fit0, fit1, fit2))</span>
+<span class="co">#htmlreg(list(fit0, fit1, fit2))</span></code></pre></div>
+</div>
+<div id="sjplot" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> sjPlot</h3>
+<ul>
+<li>viele weitere Einstellungsmöglichkeiten findest du <a href="http://www.strengejacke.de/sjPlot/sjt.lm/">hier</a>.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sjPlot)
+<span class="kw">sjt.lm</span>(fit0, fit1, fit2, <span class="dt">use.viewer =</span> F, <span class="dt">show.ci =</span> F, <span class="dt">show.se =</span> T)</code></pre></div>
+<table style="border-collapse:collapse; border:none;border-bottom:double;">
+<td style="padding:0.2cm; border-top:double;">
+ 
+</td>
+<td style="border-bottom:1px solid; padding-left:0.5em; padding-right:0.5em; border-top:double;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-bottom:1px solid; border-top:double;" colspan="3">
+imm_econ
+</td>
+<td style="border-bottom:1px solid; padding-left:0.5em; padding-right:0.5em; border-top:double;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-bottom:1px solid; border-top:double;" colspan="3">
+imm_econ
+</td>
+<td style="border-bottom:1px solid; padding-left:0.5em; padding-right:0.5em; border-top:double;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-bottom:1px solid; border-top:double;" colspan="3">
+imm_econ
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; font-style:italic;">
+ 
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; font-style:italic;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+B
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+std. Error
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+p
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; font-style:italic;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+B
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+std. Error
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+p
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; font-style:italic;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+B
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+std. Error
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+p
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; border-top:1px solid; text-align:left;">
+(Intercept)
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid; ">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+5.83
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+0.04
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+&lt;.001
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid; ">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+6.74
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+0.11
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+&lt;.001
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid; ">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+5.84
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+0.18
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left;">
+left_right
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.19
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.02
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.17
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.02
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left;">
+vote_right (1)
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-1.98
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.23
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-1.99
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.22
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left;">
+edu
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.16
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.02
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left;">
+age
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.00
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.00
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+.065
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left;">
+gender (Male)
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.33
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.09
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;">
+Observations
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid;">
+ 
+</td>
+<td style="padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;" colspan="3">
+2817
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid;">
+ 
+</td>
+<td style="padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;" colspan="3">
+2740
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid;">
+ 
+</td>
+<td style="padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;" colspan="3">
+2721
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / adj. R<sup>2</sup>
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;" colspan="3">
+.000 / .000
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;" colspan="3">
+.059 / .058
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;" colspan="3">
+.087 / .086
+</td>
+</tr>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sjt.lm</span>(fit0, fit1, fit2, 
+       <span class="dt">use.viewer =</span> F,
+       <span class="dt">show.std =</span> <span class="ot">TRUE</span>,  
+       <span class="dt">show.ci =</span> F)</code></pre></div>
+<table style="border-collapse:collapse; border:none;border-bottom:double;">
+<td style="padding:0.2cm; border-top:double;">
+ 
+</td>
+<td style="border-bottom:1px solid; padding-left:0.5em; padding-right:0.5em; border-top:double;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-bottom:1px solid; border-top:double;" colspan="3">
+imm_econ
+</td>
+<td style="border-bottom:1px solid; padding-left:0.5em; padding-right:0.5em; border-top:double;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-bottom:1px solid; border-top:double;" colspan="3">
+imm_econ
+</td>
+<td style="border-bottom:1px solid; padding-left:0.5em; padding-right:0.5em; border-top:double;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-bottom:1px solid; border-top:double;" colspan="3">
+imm_econ
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; font-style:italic;">
+ 
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; font-style:italic;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+B
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+std. Beta
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+p
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; font-style:italic;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+B
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+std. Beta
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+p
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; font-style:italic;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+B
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+std. Beta
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; ">
+p
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; border-top:1px solid; text-align:left;">
+(Intercept)
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid; ">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+5.83
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+&lt;.001
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid; ">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+6.74
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+&lt;.001
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid; ">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+5.84
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid; ">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left;">
+left_right
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.19
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.15
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.17
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.14
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left;">
+vote_right (1)
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-1.98
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.17
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-1.99
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.17
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left;">
+edu
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.16
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.15
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left;">
+age
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.00
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+-0.03
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+.065
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left;">
+gender (Male)
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.33
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+0.07
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;">
+Observations
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid;">
+ 
+</td>
+<td style="padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;" colspan="3">
+2817
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid;">
+ 
+</td>
+<td style="padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;" colspan="3">
+2740
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em; border-top:1px solid;">
+ 
+</td>
+<td style="padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;" colspan="3">
+2721
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / adj. R<sup>2</sup>
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;" colspan="3">
+.000 / .000
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;" colspan="3">
+.059 / .058
+</td>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;" colspan="3">
+.087 / .086
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="show-me-your-model" class="section level2">
+<h2><span class="header-section-number">5.2</span> Show me your model!</h2>
+<p>With the sjp.lm function you can plot the beta coefficients with confidence intervals as so called “forest plots”.</p>
+<p>Als nächstes werden wir fast auschließlich auf das Package <code>sjPlot</code> zurückgreifen um unsere Modelle zu visualiseren.</p>
+<div id="coefficient-plot-forest" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Coefficient Plot (Forest)</h3>
+<p><code>type = &quot;est&quot;</code> is default.</p>
+<ul>
+<li><code>type = &quot;est&quot;</code> Unstandardisierte <span class="math inline">\(\beta\)</span> Koeffizienten ist voreingestellt.</li>
+<li><code>type = &quot;re&quot;</code> For multilevel random effect models.</li>
+<li><code>type = &quot;std&quot;</code> Standardisierte Koeffizienten <span class="math inline">\(\beta^*\)</span>.</li>
+<li><code>type = &quot;std2&quot;</code> Vorschlag von <em>Gelman</em> durch zwei Standardabweichungen zu Teilen zur besseren Vergleichbarkeit mit Dummies.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggthemr)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">ggthemr</span>(<span class="st">&quot;flat&quot;</span>)
+
+<span class="kw">library</span>(sjPlot)
+<span class="kw">plot_model</span>(fit2)</code></pre></div>
+<p><img src="linear_model_files/figure-html/plotmodel1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_model</span>(fit2, <span class="dt">vline.color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">sort.est =</span> T)</code></pre></div>
+<p><img src="linear_model_files/figure-html/plotmodel1-2.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_model</span>(fit2, <span class="dt">show.values =</span> <span class="ot">TRUE</span>, <span class="dt">value.offset =</span> .<span class="dv">3</span>, <span class="dt">type =</span> <span class="st">&quot;std2&quot;</span>)</code></pre></div>
+<p><img src="linear_model_files/figure-html/plotmodel1-3.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
+<span class="kw">rbind</span>(
+  <span class="kw">c</span>(<span class="st">&quot;Nullmodel&quot;</span>, <span class="kw">glance</span>(fit0)),
+  <span class="kw">c</span>(<span class="st">&quot;Model 1&quot;</span>, <span class="kw">glance</span>(fit1)),
+  <span class="kw">c</span>(<span class="st">&quot;Model 2&quot;</span>, <span class="kw">glance</span>(fit2))
+)</code></pre></div>
+<pre><code>##                  r.squared  adj.r.squared sigma    statistic p.value     
+## [1,] &quot;Nullmodel&quot; 0          0             2.33521  NA        NA          
+## [2,] &quot;Model 1&quot;   0.0587767  0.05808893    2.253388 85.45891  9.963587e-37
+## [3,] &quot;Model 2&quot;   0.08744187 0.08576128    2.221265 52.03058  1.115144e-51
+##      df logLik    AIC      BIC      deviance df.residual
+## [1,] 1  -6385.753 12775.51 12787.39 15356.23 2816       
+## [2,] 3  -6112.462 12232.92 12256.59 13897.82 2737       
+## [3,] 6  -6029.495 12072.99 12114.35 13395.86 2715</code></pre>
+</div>
+<div id="marginal-effects" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Marginal Effects</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sjp.lm</span>(fit2, <span class="dt">type =</span> <span class="st">&quot;eff&quot;</span>)</code></pre></div>
+<p><img src="linear_model_files/figure-html/sjp.lm1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sjp.lm</span>(fit2, 
+       <span class="dt">type =</span> <span class="st">&quot;eff&quot;</span>, 
+       <span class="dt">facet.grid =</span> F, 
+       <span class="dt">vars =</span> <span class="st">&quot;left_right&quot;</span>)</code></pre></div>
+<p><img src="linear_model_files/figure-html/sjp.lm2-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="predicting-values" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Predicting values</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sjp.lm</span>(fit2, <span class="dt">type =</span> <span class="st">&quot;pred&quot;</span>, <span class="dt">vars =</span> <span class="st">&quot;left_right&quot;</span>, <span class="dt">point.alpha =</span> .<span class="dv">1</span>)</code></pre></div>
+<p><img src="linear_model_files/figure-html/sjp.lm3-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sjp.lm</span>(fit2, <span class="dt">type =</span> <span class="st">&quot;pred&quot;</span>, <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">&quot;left_right&quot;</span>, <span class="st">&quot;edu&quot;</span>))<span class="op">$</span>plot <span class="op">+</span>
+<span class="st">  </span>viridis<span class="op">::</span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete =</span> T)</code></pre></div>
+<p><img src="linear_model_files/figure-html/sjp.lm4-1.png" width="480" style="display: block; margin: auto;" /><img src="linear_model_files/figure-html/sjp.lm4-2.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sjp.lm</span>(fit2, <span class="dt">type =</span> <span class="st">&quot;slope&quot;</span>, <span class="dt">show.loess =</span> <span class="ot">TRUE</span>, <span class="dt">vars =</span> <span class="st">&quot;age&quot;</span>)</code></pre></div>
+<p><img src="linear_model_files/figure-html/sjp.lm5-1.png" width="480" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lm-modellauswahl.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelldiagnose.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

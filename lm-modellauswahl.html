@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lineare Regression</title>
+  <meta name="description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen.">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Lineare Regression" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
+  <meta name="github-repo" content="systats/linear_regression" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lineare Regression" />
+  
+  <meta name="twitter:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
+  
+
+<meta name="author" content="Simon Roth">
+
+
+<meta name="date" content="2017-11-13">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="basics.html">
+<link rel="next" href="reporting.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="part"><span><b>I Start</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einstieg</a></li>
+<li class="chapter" data-level="2" data-path="grundlagen.html"><a href="grundlagen.html"><i class="fa fa-check"></i><b>2</b> Grundlagen</a></li>
+<li class="part"><span><b>II Lieneare Regression</b></span></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a></li>
+<li class="chapter" data-level="4" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html"><i class="fa fa-check"></i><b>4</b> LM Modellauswahl</a><ul>
+<li class="chapter" data-level="4.1" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#gutemae"><i class="fa fa-check"></i><b>4.1</b> Gütemaße</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#r-squared"><i class="fa fa-check"></i><b>4.1.1</b> R Squared</a></li>
+<li class="chapter" data-level="4.1.2" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#adjusted-r-squared"><i class="fa fa-check"></i><b>4.1.2</b> Adjusted R Squared</a></li>
+<li class="chapter" data-level="4.1.3" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#rse"><i class="fa fa-check"></i><b>4.1.3</b> RSE</a></li>
+<li class="chapter" data-level="4.1.4" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#f-test"><i class="fa fa-check"></i><b>4.1.4</b> F-Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#modellvergleich"><i class="fa fa-check"></i><b>4.2</b> Modellvergleich</a></li>
+<li class="chapter" data-level="4.3" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#best-subset-selection"><i class="fa fa-check"></i><b>4.3</b> Best Subset Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>5</b> Reporting</a></li>
+<li class="chapter" data-level="6" data-path="modelldiagnose.html"><a href="modelldiagnose.html"><i class="fa fa-check"></i><b>6</b> Modelldiagnose</a></li>
+<li class="chapter" data-level="7" data-path="non-linearitat.html"><a href="non-linearitat.html"><i class="fa fa-check"></i><b>7</b> Non-Linearität</a></li>
+<li class="chapter" data-level="8" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimesnionality Reduction</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lineare Regression</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lm-modellauswahl" class="section level1">
+<h1><span class="header-section-number">4</span> LM Modellauswahl</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load data</span>
+<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&#39;https://github.com/systats/workshop_data_science/raw/master/Rnotebook/data/ess_workshop.Rdata&#39;</span>))
+<span class="co"># filter data</span>
+
+<span class="kw">library</span>(dplyr)
+ess_ger &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;DE&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age2 =</span> age<span class="op">*</span>age)
+
+fit0 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_poor <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> ess_ger)
+fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_poor <span class="op">~</span><span class="st"> </span>left_right <span class="op">+</span><span class="st"> </span>vote_right, <span class="dt">data =</span> ess_ger) 
+fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_poor <span class="op">~</span><span class="st"> </span>left_right <span class="op">+</span><span class="st"> </span>vote_right <span class="op">+</span><span class="st"> </span>edu <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data =</span> ess_ger)
+
+<span class="kw">library</span>(texreg)
+
+<span class="kw">screenreg</span>(<span class="kw">list</span>(fit0, fit1, fit2))</code></pre></div>
+<pre><code>
+==================================================
+             Model 1      Model 2      Model 3    
+--------------------------------------------------
+(Intercept)     3.80 ***     4.33 ***     4.44 ***
+               (0.02)       (0.04)       (0.07)   
+left_right                  -0.11 ***    -0.10 ***
+                            (0.01)       (0.01)   
+vote_right1                 -0.57 ***    -0.56 ***
+                            (0.08)       (0.08)   
+edu                                       0.04 ***
+                                         (0.01)   
+age                                      -0.01 ***
+                                         (0.00)   
+genderMale                               -0.01    
+                                         (0.03)   
+--------------------------------------------------
+R^2             0.00         0.09         0.13    
+Adj. R^2        0.00         0.09         0.12    
+Num. obs.    2813         2734         2716       
+RMSE            0.85         0.80         0.79    
+==================================================
+*** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#htmlreg(list(fit0, fit1, fit2))</span>
+<span class="co">#texreg(list(fit0, fit1, fit2))</span></code></pre></div>
+<p>Als nächstes wollen wir die Anpassung eines Modells an die Daten testen. Das wird meistens als Modellgüte oder <em>goodness of fit</em> bezeichnet. Jede Modellfamilie hat ihre eigene Teststatistiken, für Lineare Regression sind das</p>
+<ul>
+<li><span class="math inline">\(R^2\)</span></li>
+<li><span class="math inline">\(R^2_{adj}\)</span></li>
+<li>Standardschätzfehler (RSE)</li>
+<li>F-Statistik</li>
+</ul>
+<p>Zwar werden diese Maße in der Praxis dazu verwendet Aussagen über ein spezifisches Modell zu erhalten, allerdings sind diese nur zum Modellvergleich geeignet. Wenn also mehrere Regressionsmodelle geschätzt wurden, kann somit das <strong>beste</strong> Modell identifiziert werden. Zuerst jedoch werden die drei Statistiken einzeln vorgestellt. Eine tidy dataframe der berechneten Gütemaße kann mit broom abgerufen werden.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">broom<span class="op">::</span><span class="kw">glance</span>(fit2)</code></pre></div>
+<pre><code>##   r.squared adj.r.squared     sigma statistic      p.value df    logLik
+## 1 0.1264412     0.1248294 0.7867321  78.45048 4.807338e-77  6 -3199.354
+##        AIC      BIC deviance df.residual
+## 1 6412.707 6454.056 1677.347        2710</code></pre>
+<div id="gutemae" class="section level2">
+<h2><span class="header-section-number">4.1</span> Gütemaße</h2>
+<p>Die nachfolgend vorgestellten Gütemaße sind nicht dazu geeignet inhaltlich interpretiert zu werden. Vielmehr werden sie dazu genutzt um eine Reihe von Modellen (nested) mit einander zu vergleichen.</p>
+<div id="r-squared" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> R Squared</h3>
+<p>Das Bestimmheitsmaß <span class="math inline">\(R^2\)</span> gibt den Anteil der durch die Regression ausgeschöpften (<del>erklärten</del>) Varianz an der Gesamtvarianz der abhängigen Variablen Y an. Dazu wird das spezifizierte Modell mit dem dazugehörigen Nullmodell (Referenzmodell) verglichen. Das Verhältnis hat die schöne Eigenschaft, dass <span class="math inline">\(R^2\)</span> in den Grenzen <span class="math inline">\([0 \geq R^2 \geq 1]\)</span> liegt und als PRE-Maß (Proportional Reduction in Error) interpretiert werden kann.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit2)<span class="op">$</span>r.squared</code></pre></div>
+<pre><code>## [1] 0.1264412</code></pre>
+<p>Das vorliegende statistische Modell kann knapp 60% der Varianz im Zensur Index “erklären/ ausschöpfen”. Diese Interpretation ist weit verbreitet, obwohl sie viele Probleme einfach ausblendet. Zum Ersten wird durch das statistische Modell keine Erklärungsleistung geliefert, sondern nur Korrelationen und Assoziationen berichtet. Inhaltliche Schlüsse können erst in Verbindung mit Hypothesen gezogen werden. Und Zweites erweißt sich das <span class="math inline">\(R^2\)</span> als inkonsistent, da es durch Faktoren wie die Größe der Fehlervarianz <span class="math inline">\(\sigma^2\)</span> oder der Range der Variablen beeinflusst wird. Dieser <a href="https://systats.netlify.com/2017/11/11/r2/">Blog Post</a> zeigt mittels Simulationen die empirischen Defizite von <span class="math inline">\(R^2\)</span>.</p>
+<p>Zur Schätzlogik: Das Nullmodell welches als Referenz dient entspricht dem y-Mittelwert (<span class="math inline">\(\bar y\)</span>). Da keine Prädiktoren im Modell vorhanden sind, wird lediglich der Intercept <span class="math inline">\(\beta_0\)</span> und damit die Gesamtvarianz um den y-Mittelwert errechnet.</p>
+<p><span class="math display">\[y_i = \beta_0 + \varepsilon_i = \bar y + \varepsilon_i\]</span></p>
+<p>Zum besseren Verständnis werden die Varianzanteile wie folgt definiert:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><strong>TSS</strong><span class="math inline">\(\;\;\;\)</span></td>
+<td>Total Sum of Squares</td>
+<td>Die y-Gesamtvarianz</td>
+</tr>
+<tr class="even">
+<td><strong>MSS</strong></td>
+<td>Model Sum of Squares</td>
+<td>Die durch die Regression gebundene Varianz</td>
+</tr>
+<tr class="odd">
+<td><strong>RSS</strong></td>
+<td>Residual Sum of Squares <span class="math inline">\(\;\;\;\)</span></td>
+<td>Fehlervarianz</td>
+</tr>
+</tbody>
+</table>
+<p>Das <span class="math inline">\(R^2\)</span> wird dann als Verhältnis zwischen der Varianz der geschätzten Werte <span class="math inline">\(s^2_{\hat m}\)</span> (Restriktives Modell) und der Gesamtvarianz von y <span class="math inline">\(s^2_y\)</span> (Nullmodell) berechnet.</p>
+<p><span class="math display">\[R^2 = \frac{s^2_{\hat m}}{s^2_y} = \frac{\sum(\hat y_i - \bar y)^2}{\sum (y_i-\bar y)^2} = \frac{MSS}{TSS}\]</span></p>
+<p>Erst wird die Modellvarianz (MSS), dann die Gesamtvarianz von y (TSS) kalkuliert und anschließend verglichen.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span>ess_ger<span class="op">$</span>income
+f &lt;-<span class="st"> </span>fit2<span class="op">$</span>fitted.values <span class="co"># extract fitted (or predicted) values from model</span>
+mss &lt;-<span class="st"> </span><span class="kw">sum</span>((f <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(y, <span class="dt">na.rm =</span> T))<span class="op">^</span><span class="dv">2</span>, <span class="dt">na.rm =</span> T)  <span class="co"># sum of squared fitted-value deviations</span>
+tss &lt;-<span class="st"> </span><span class="kw">sum</span>((y <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(y, <span class="dt">na.rm =</span> T))<span class="op">^</span><span class="dv">2</span>, <span class="dt">na.rm =</span> T)  <span class="co"># sum of squared original-value deviations</span>
+r2 &lt;-<span class="st"> </span>mss <span class="op">/</span><span class="st"> </span>tss                      <span class="co"># r-squared</span>
+r2</code></pre></div>
+<pre><code>## [1] 0.5899711</code></pre>
+<p><span class="math inline">\(R^2\)</span> kann auch aus der Residualvarianz (RSS) gebildet werden</p>
+<p><span class="math display">\[ R^2 = 1 - \frac{\sum(y_i - \hat y_i)^2}{\sum (y_i-\bar y)^2} = 1- \frac{RSS}{TSS}\]</span></p>
+<p>Die Modelvarianz der geschätzten Werte ergibt sich aus dem Produkt des quadrierten Steigungsparameter und der x-Varianz</p>
+<p><span class="math display">\[s^2_{\hat m} = s^2_{\beta_0 + \beta_1x} = s^2_{\beta_1x}= \hat \beta^2_1 s^2_x\]</span></p>
+<p>Dadurch kann <span class="math inline">\(R^2\)</span> auch als quadratische, standardisierte Steigung verstanden werden.</p>
+<p><span class="math display">\[R^2 = \hat \beta^2_1 \frac{s^2_x}{s^2_y}\]</span></p>
+<p>Daraus resultiert die quadrierte Korrelation als <span class="math inline">\(R^2\)</span>.</p>
+<p><span class="math display">\[R^2 = \left(\frac{cov(xy)}{s_xs_y}\right)^2\]</span></p>
+<p>Leicht lässt sich beweisen, dass sich das <span class="math inline">\(R^2\)</span> nicht ändert, ganz gleich ob x auf y oder y auf x regressiert wird. <a href="http://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/10/lecture-10.pdf">F-Tests, R2, and Other Distractions by Shalizi</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span> <span class="co"># independent variable</span>
+y &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>)   <span class="co"># dependent variable; function of x with random error</span>
+<span class="kw">summary</span>(<span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1))<span class="op">$</span>r.squared <span class="op">==</span><span class="st"> </span><span class="kw">summary</span>(<span class="kw">lm</span>(x1 <span class="op">~</span><span class="st"> </span>y))<span class="op">$</span>r.squared</code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>Da die Residuen eines linearen Regressionsmodell unkorreliert mit dem Modell geschätzt werden, kann leicht nachgewiesen werden, dass der folgende Zähler der Modelvarianz <span class="math inline">\(s^2_{\hat m}\)</span> gleicht.</p>
+<p><span class="math display">\[R^2 = \frac{s_y^2 - \hat \sigma^2}{s^2_y} \]</span></p>
+</div>
+<div id="adjusted-r-squared" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Adjusted R Squared</h3>
+<p>Wenn multivariates Regressionsmodell geschätzt wird, steigt das <span class="math inline">\(R^2\)</span> mit jeder zusätzlichen Variablen automatisch an (außer, wenn dessen Regressionskoeffizient genau Null ist, was so gut wie nie der Fall ist). Sollte also kein Zusammenhang zwischen x und y bestehen, so ist die Kovariation trotzdem so gut wie immer größer als Null <span class="math inline">\(cov(x, y) &gt; 0\)</span>. D.h. die geschätzten zusätzlichen Parameter sind nicht 0 und verzerren dadurch das <span class="math inline">\(R^2\)</span> artifiziell gegen 1. Zur Lösung wurde das Adjusted <span class="math inline">\(R^2\)</span> eingeführt, welches eine Korrektur (Penalty) für zusätzliche Variablen im Modell vornimmt.</p>
+<p><span class="math display">\[R^2_{\text{adj}} = 1 - \left(\frac{n-1}{n-p-1}\right)(1-R^2)\]</span></p>
+<p>oder</p>
+<p><span class="math display">\[R^2_{\text{adj}} = R^2 - \left(\frac{p}{n-p-1}\right)(1-R^2) \]</span></p>
+<p>Die Korrektur basiert auf der Anzahl der Beobachtungen <span class="math inline">\(n\)</span>, <span class="math inline">\(p\)</span> die Zahl der x Variablen und zuletzt der Fehlervarianz (<span class="math inline">\(1-R^2\)</span>) <a href="https://www.quora.com/What-is-the-difference-between-R-squared-and-Adjusted-R-squared">Quora</a>.</p>
+</div>
+<div id="rse" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> RSE</h3>
+<p>Der Standardfehler des gesamten Modells (Residual Standard Error RSE) beschreibt die durchschnittliche Standardabweichung der Residuen <span class="math inline">\(\varepsilon_i\)</span> von der Regressionsgerade. Man spricht auch vom Standardschätzfehler. Die Formel dazu</p>
+<p><span class="math display">\[RSE = \sqrt{\frac{1}{n-2}\sum^n_{i=1} (y_i - \hat y_i)^2} = \sqrt{\frac{1}{n-2}\sum^n_{i=1} \varepsilon^2} = \sqrt{\frac{\sigma^2}{n-2}} = \sigma\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">length</span>(fit2<span class="op">$</span>residuals)
+<span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span>(n<span class="op">-</span><span class="dv">2</span>)<span class="op">*</span><span class="kw">sum</span>(fit2<span class="op">$</span>residuals<span class="op">^</span><span class="dv">2</span>))</code></pre></div>
+<pre><code>## [1] 0.7861521</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sigma</span>(fit1)</code></pre></div>
+<pre><code>## [1] 0.8020344</code></pre>
+<p>Der durchschnittliche Fehler in der Metrik der abhängigen von der Vorhersage beträgt momentan 2.64 Einkommenspunkte.</p>
+</div>
+<div id="f-test" class="section level3">
+<h3><span class="header-section-number">4.1.4</span> F-Test</h3>
+<p>Der F-Test ist ein gemeinsamer Hypothesentest für mehrere Koeffizienten zugleich. Von einem gemeinsamen Hypothesentest sprechen wir, wenn gleichzeitig Restriktionen für mehrere Steigungsparameter eines Modells (mit <span class="math inline">\(p\)</span> Prädiktoren) getestet werden, d.h.</p>
+<p><span class="math display">\[H_0: \;\; \beta_1 = ... = \beta_p = 0\]</span> <span class="math display">\[H_1:\;\; \beta_1 = ... = \beta_p \neq 0\]</span></p>
+<p>Die Nullhypothese unterstellt also alle Parameter sind gleich NULL. Sind alle Parameter tatsächlich NULL? Allerdings entwickeln ForscherInnen diesbezüglich keine Alternativhypothese, da sie in der Regel nicht daran interessiert sind ob zumindest einer der Parameter signifikant von Null abweicht. Die Formel für ein Modell lautet</p>
+<!-- (vgl. Stock/Watson, Kap. 7.2) -->
+<p><span class="math display">\[F = \frac{1}{2} \frac{t_1^2 + t_2^2 - 2\hat p_{t_1,t_2} t_1 t_2}{1-\hat p^2_{t_1,t_2}}\]</span></p>
+<p>Die Teststatistik ist unter der Nullhypothese (<span class="math inline">\(t_1\)</span> , <span class="math inline">\(t_2\)</span> sind unabhängig standard-normalverteilt) <span class="math inline">\(F_{p,\infty}\)</span>-verteilt mit der realisierten Teststatistik <span class="math inline">\(f\)</span> und dem p-Wert</p>
+<p><span class="math display">\[p-Wert = P[F_{p,\infty} &gt; f] \]</span></p>
+<p>Die F-Statistik misst also den (relativen) Anstieg in der residualen Varianz wenn man vom Nullmodel zum restriktiven Modell geht. Die F-Statistik ist immer positiv. Die Teststatistik wird wie folgt realisiert.</p>
+<p><span class="math display">\[F = \frac{(TSS-RSS)/p}{RSS/(n-p-1)} \]</span></p>
+<p><img src="linear_model_files/figure-html/F-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="modellvergleich" class="section level2">
+<h2><span class="header-section-number">4.2</span> Modellvergleich</h2>
+<p>Welches ist das beste?</p>
+<p>In der sozialwissenschaftlichen Forschungspraxis werden meistens mehrere multivariate Modelle mit einander verglichen, die logisch aufeinander aufgebaut sind. Wird in das Modell 1 um eine weitere Variable erweitert, spricht man von <strong>nested</strong> Models bzw. von einem sequenziellen Vorgehen.</p>
+<p>Modell 0 bis 3 zeigt eine sequenziellen Ansatz. Modell 0 schätzt nur den Intercept (Mittelwert von Y), da keine X-Variablen beinhaltet sind. Jedes weitere Model beinhaltet eine weitere Variable. Dadurch kann überprüft werden wie mit steigender Modellkomplexität (mehr <span class="math inline">\(\beta\)</span>-Parameter zu schätzen) die Parameter variieren (oder stabil bleiben).</p>
+<blockquote>
+<p>All models are worng some are usedul.</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Statistik</th>
+<th><span class="math inline">\(\;\;\;\)</span></th>
+<th align="right">Kriterium</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">RSE</td>
+<td></td>
+<td align="right">Je kleiner desto besser.</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(R^2\)</span></td>
+<td></td>
+<td align="right">Je höher desto besser.</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(R^2_{adj}\)</span></td>
+<td></td>
+<td align="right">Je höher desto besser.</td>
+</tr>
+<tr class="even">
+<td align="left">F-Statistik</td>
+<td></td>
+<td align="right">Je höher desto besser.</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
+<span class="kw">rbind</span>(
+  <span class="kw">c</span>(<span class="st">&quot;Nullmodel&quot;</span>, <span class="kw">glance</span>(fit0)),
+  <span class="kw">c</span>(<span class="st">&quot;Model 1&quot;</span>, <span class="kw">glance</span>(fit1)),
+  <span class="kw">c</span>(<span class="st">&quot;Model 2&quot;</span>, <span class="kw">glance</span>(fit2))
+)</code></pre></div>
+<pre><code>##                  r.squared  adj.r.squared sigma     statistic p.value     
+## [1,] &quot;Nullmodel&quot; 0          0             0.8451316 NA        NA          
+## [2,] &quot;Model 1&quot;   0.09195654 0.09129155    0.8020344 138.2826  6.231784e-58
+## [3,] &quot;Model 2&quot;   0.1264412  0.1248294     0.7867321 78.45048  4.807338e-77
+##      df logLik    AIC      BIC      deviance df.residual
+## [1,] 1  -3517.65  7039.301 7051.185 2008.464 2812       
+## [2,] 3  -3274.746 6557.493 6581.147 1756.741 2731       
+## [3,] 6  -3199.354 6412.707 6454.056 1677.347 2710</code></pre>
+</div>
+<div id="best-subset-selection" class="section level2">
+<h2><span class="header-section-number">4.3</span> Best Subset Selection</h2>
+<p>Wenn man daran interessiert ist den Zusammenhang zwischen &gt; 30 x-Variablen und einer y-Variable zu bestimmen, sollte automatische Variablenauswahl bzw. <strong>Best Subset Selection</strong> zu Einsatz kommen. Dazu wird eine separate OLS Regression für jede Kombination der <span class="math inline">\(p\)</span> Prädiktoren berechnet. Die Schätzung umfasst alle möglichen bivariaten (nur ein Prädiktor) Modelle p, sowie alle weiteren <span class="math inline">\(\left(\begin{array}{c}p \\ 2\end{array} \right) = p(p-1)/2\)</span> mit zwei unabhängigen Variablen usw. Abschließend wird aus allen geschätzten Modellen das Modell mit dem besten fit gewählt.</p>
+<p>Genauer betrachtet umfasst das automatische Selektionsverfahren drei Schritte:</p>
+<p><strong>Schritt 1:</strong> Zuerst wird das Nullmodel <span class="math inline">\(M_0\)</span> ohne Prädiktoren geschätzt.</p>
+<p><strong>Schritt 2:</strong> Für <span class="math inline">\(k = 1,2,...,p\)</span>:</p>
+<ul>
+<li>schätze alle <span class="math inline">\(\left(\begin{array}{c}p \\ 2\end{array} \right)\)</span> möglichen Modellkombinationen mit genau <span class="math inline">\(k\)</span> Prädiktoren.</li>
+<li>Dann wähle aus diesen Modellen das best Geschätzte bezogen auf den kleinsten Fehler (RSE) oder dem größten <span class="math inline">\(R^2\)</span> und bezeichne es als <span class="math inline">\(M_k\)</span>.</li>
+</ul>
+<p><strong>Schritt 3:</strong> Abschließend wähle aus den <span class="math inline">\(M_0,M_k,...,M_p\)</span> Modellen das “aller” beste Modell durch <em>crossvalidated prediction error</em>, <span class="math inline">\(C_p\)</span>, <span class="math inline">\(AIC\)</span>, <span class="math inline">\(BIC\)</span> oder <span class="math inline">\(R^2_{adj}\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;leaps&quot;)</span>
+<span class="kw">library</span>(leaps) 
+
+ess_sub &lt;-<span class="st"> </span>ess_ger <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>country, <span class="op">-</span>EU_accession, <span class="op">-</span>pc, <span class="op">-</span>region, <span class="op">-</span>party_ger, <span class="op">-</span>fake_refugee,  <span class="op">-</span>party_right, <span class="op">-</span>vote_right, <span class="op">-</span>imm_poor) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">na.omit</span>()
+
+best_subset &lt;-<span class="st"> </span><span class="kw">regsubsets</span>(
+  imm_econ <span class="op">~</span><span class="st"> </span>.,
+  <span class="dt">data =</span>  ess_sub,
+  <span class="dt">nvmax =</span> <span class="dv">8</span>,
+  <span class="dt">nbest =</span> <span class="dv">1</span>
+)
+
+<span class="kw">summary</span>(best_subset)</code></pre></div>
+<pre><code>## Subset selection object
+## Call: regsubsets.formula(imm_econ ~ ., data = ess_sub, nvmax = 8, nbest = 1)
+## 10 Variables  (and intercept)
+##               Forced in Forced out
+## genderMale        FALSE      FALSE
+## age               FALSE      FALSE
+## edu               FALSE      FALSE
+## income            FALSE      FALSE
+## pol_inter         FALSE      FALSE
+## left_right        FALSE      FALSE
+## gay_tolerance     FALSE      FALSE
+## religious         FALSE      FALSE
+## safety            FALSE      FALSE
+## age2              FALSE      FALSE
+## 1 subsets of each size up to 8
+## Selection Algorithm: exhaustive
+##          genderMale age edu income pol_inter left_right gay_tolerance
+## 1  ( 1 ) &quot; &quot;        &quot; &quot; &quot; &quot; &quot; &quot;    &quot; &quot;       &quot; &quot;        &quot; &quot;          
+## 2  ( 1 ) &quot; &quot;        &quot; &quot; &quot; &quot; &quot; &quot;    &quot; &quot;       &quot; &quot;        &quot;*&quot;          
+## 3  ( 1 ) &quot; &quot;        &quot; &quot; &quot; &quot; &quot; &quot;    &quot;*&quot;       &quot; &quot;        &quot;*&quot;          
+## 4  ( 1 ) &quot; &quot;        &quot; &quot; &quot; &quot; &quot; &quot;    &quot;*&quot;       &quot; &quot;        &quot;*&quot;          
+## 5  ( 1 ) &quot; &quot;        &quot; &quot; &quot; &quot; &quot; &quot;    &quot;*&quot;       &quot;*&quot;        &quot;*&quot;          
+## 6  ( 1 ) &quot; &quot;        &quot; &quot; &quot;*&quot; &quot; &quot;    &quot;*&quot;       &quot;*&quot;        &quot;*&quot;          
+## 7  ( 1 ) &quot; &quot;        &quot;*&quot; &quot; &quot; &quot; &quot;    &quot;*&quot;       &quot;*&quot;        &quot;*&quot;          
+## 8  ( 1 ) &quot; &quot;        &quot;*&quot; &quot;*&quot; &quot; &quot;    &quot;*&quot;       &quot;*&quot;        &quot;*&quot;          
+##          religious safety age2
+## 1  ( 1 ) &quot; &quot;       &quot;*&quot;    &quot; &quot; 
+## 2  ( 1 ) &quot; &quot;       &quot;*&quot;    &quot; &quot; 
+## 3  ( 1 ) &quot; &quot;       &quot;*&quot;    &quot; &quot; 
+## 4  ( 1 ) &quot;*&quot;       &quot;*&quot;    &quot; &quot; 
+## 5  ( 1 ) &quot;*&quot;       &quot;*&quot;    &quot; &quot; 
+## 6  ( 1 ) &quot;*&quot;       &quot;*&quot;    &quot; &quot; 
+## 7  ( 1 ) &quot;*&quot;       &quot;*&quot;    &quot;*&quot; 
+## 8  ( 1 ) &quot;*&quot;       &quot;*&quot;    &quot;*&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(best_subset, <span class="dt">scale=</span><span class="st">&quot;bic&quot;</span>, <span class="dt">main=</span><span class="st">&quot;BIC&quot;</span>)
+<span class="kw">plot</span>(best_subset, <span class="dt">scale=</span><span class="st">&quot;adjr2&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Adjusted R^2&quot;</span>)</code></pre></div>
+<p><img src="linear_model_files/figure-html/leaps-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">results &lt;-<span class="st"> </span><span class="kw">summary</span>(best_subset)
+
+<span class="kw">library</span>(ggthemr)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">ggthemr</span>(<span class="st">&quot;flat&quot;</span>)
+
+<span class="kw">tibble</span>(<span class="dt">predictors =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>,
+       <span class="dt">adj_R2 =</span> results<span class="op">$</span>adjr2,
+       <span class="dt">Cp =</span> results<span class="op">$</span>cp,
+       <span class="dt">BIC =</span> results<span class="op">$</span>bic) <span class="op">%&gt;%</span>
+<span class="st">  </span>tidyr<span class="op">::</span><span class="kw">gather</span>(statistic, value, <span class="op">-</span>predictors) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(predictors, value, <span class="dt">color =</span> statistic)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">show.legend =</span> F) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">show.legend =</span> F) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>statistic, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</code></pre></div>
+<p><img src="linear_model_files/figure-html/vis_regsubset-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#ggthemes::theme_hc()</span></code></pre></div>
+<!-- ## Forward Stepwise Selection -->
+<!---
+
+```r
+library(QuantPsyc)
+# Computes the standardized regression coeffients (beta) 
+lm.beta(fit3)
+
+cbind(lm.beta(fit3), fit_std$coefficients[-1]) # Why different results?
+```
+--->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reporting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

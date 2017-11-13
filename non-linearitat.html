@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lineare Regression</title>
+  <meta name="description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen.">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Lineare Regression" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
+  <meta name="github-repo" content="systats/linear_regression" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lineare Regression" />
+  
+  <meta name="twitter:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
+  
+
+<meta name="author" content="Simon Roth">
+
+
+<meta name="date" content="2017-11-13">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="modelldiagnose.html">
+<link rel="next" href="dimesnionality-reduction.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="part"><span><b>I Start</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einstieg</a></li>
+<li class="chapter" data-level="2" data-path="grundlagen.html"><a href="grundlagen.html"><i class="fa fa-check"></i><b>2</b> Grundlagen</a></li>
+<li class="part"><span><b>II Lieneare Regression</b></span></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a></li>
+<li class="chapter" data-level="4" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html"><i class="fa fa-check"></i><b>4</b> LM Modellauswahl</a></li>
+<li class="chapter" data-level="5" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>5</b> Reporting</a></li>
+<li class="chapter" data-level="6" data-path="modelldiagnose.html"><a href="modelldiagnose.html"><i class="fa fa-check"></i><b>6</b> Modelldiagnose</a></li>
+<li class="chapter" data-level="7" data-path="non-linearitat.html"><a href="non-linearitat.html"><i class="fa fa-check"></i><b>7</b> Non-Linearität</a><ul>
+<li class="chapter" data-level="7.1" data-path="non-linearitat.html"><a href="non-linearitat.html#interaktionen"><i class="fa fa-check"></i><b>7.1</b> Interaktionen</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="non-linearitat.html"><a href="non-linearitat.html#interaktion-zweier-binarer-variablen"><i class="fa fa-check"></i><b>7.1.1</b> Interaktion zweier binärer Variablen</a></li>
+<li class="chapter" data-level="7.1.2" data-path="non-linearitat.html"><a href="non-linearitat.html#interaktion-einer-metrischen-und-einer-binaren-variable"><i class="fa fa-check"></i><b>7.1.2</b> Interaktion einer metrischen und einer binären Variable</a></li>
+<li class="chapter" data-level="7.1.3" data-path="non-linearitat.html"><a href="non-linearitat.html#interaktion-zweier-metrischen-variablen"><i class="fa fa-check"></i><b>7.1.3</b> Interaktion zweier metrischen Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="non-linearitat.html"><a href="non-linearitat.html#logarithmus"><i class="fa fa-check"></i><b>7.2</b> Logarithmus</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="non-linearitat.html"><a href="non-linearitat.html#lin-log"><i class="fa fa-check"></i><b>7.2.1</b> Lin-Log</a></li>
+<li class="chapter" data-level="7.2.2" data-path="non-linearitat.html"><a href="non-linearitat.html#log-lin"><i class="fa fa-check"></i><b>7.2.2</b> Log-Lin</a></li>
+<li class="chapter" data-level="7.2.3" data-path="non-linearitat.html"><a href="non-linearitat.html#log-log"><i class="fa fa-check"></i><b>7.2.3</b> Log-Log</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="non-linearitat.html"><a href="non-linearitat.html#polynome"><i class="fa fa-check"></i><b>7.3</b> Polynome</a></li>
+<li class="chapter" data-level="7.4" data-path="non-linearitat.html"><a href="non-linearitat.html#multigruppenvergleich"><i class="fa fa-check"></i><b>7.4</b> Multigruppenvergleich</a></li>
+<li class="chapter" data-level="7.5" data-path="non-linearitat.html"><a href="non-linearitat.html#segmented-regression"><i class="fa fa-check"></i><b>7.5</b> Segmented Regression</a></li>
+<li class="chapter" data-level="7.6" data-path="non-linearitat.html"><a href="non-linearitat.html#splines"><i class="fa fa-check"></i><b>7.6</b> Splines</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimesnionality Reduction</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lineare Regression</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="non-linearitat" class="section level1">
+<h1><span class="header-section-number">7</span> Non-Linearität</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load data</span>
+<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&#39;https://github.com/systats/workshop_data_science/raw/master/Rnotebook/data/ess_workshop.Rdata&#39;</span>))
+<span class="co"># filter data</span>
+
+<span class="kw">library</span>(dplyr)
+ess_ger &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;DE&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age2 =</span> age<span class="op">*</span>age)
+
+fit0 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> ess_ger)
+fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span>left_right <span class="op">+</span><span class="st"> </span>vote_right, <span class="dt">data =</span> ess_ger) 
+fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span>left_right <span class="op">+</span><span class="st"> </span>vote_right <span class="op">+</span><span class="st"> </span>edu <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data =</span> ess_ger)</code></pre></div>
+<p>Im linearen <strong>Regressionsframework</strong> können auch nicht-lineare Zusammenhänge spezifiziert werden. Dabei bleibt die Parameterschätzung weiterhin unverändert linear nur die Variablen werden transformiert. Das bedeutet, dass weiterhin die Interpretation <em>wenn x um eine Einheit ansteigt, dann steigt y um </em><span class="math inline">\(\beta\)</span><em>-Einheiten</em>, allerdings ändert sich die Einheit. Statt x wird nun z.B. die Standardabweichung von x oder der natürliche Logarithmus von x als Maßeinheit in Abhängigkeit von <span class="math inline">\(\beta\)</span> interpretiert. Häufigste werden biologischen Daten aufgrund ihrer Skewness transformiert. Rechtslastigkeit kann durch Logarithmierung aufgehoben werden und eine zugrunde liegende Exponentialverteilung kann mittels log-Transformation linearisiert werden.</p>
+<div id="interaktionen" class="section level2">
+<h2><span class="header-section-number">7.1</span> Interaktionen</h2>
+<p>Eine Möglichkeit nicht-lineare Zusammenhänge zu modellieren ist der Einbezug eines Moderationseffekts. Dabei hängt die Wirkung der einen Variablen von der Ausprägungen der anderen Variable ab. Dazu wird eine Interaktion zwischen zwei Variablen gebildet und zusätzlich zu den Ursprungsvariablen (Haupteffekten) ins Modell aufgenommen, auch wenn diese nicht definiert worden sind oder nicht signifikant werden.</p>
+<ul>
+<li>Interaktion zweier binärer Variablen</li>
+<li>Interaktion einer kontinuierlichen und einer binären Variable</li>
+<li>Interaktion zweier kontinuierlicher Variablen</li>
+</ul>
+<table>
+<colgroup>
+<col width="27%" />
+<col width="72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Formula</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>y~a+x</code></td>
+<td>no interaction</td>
+</tr>
+<tr class="even">
+<td><code>y~a:x</code></td>
+<td>interaction between variables a and x</td>
+</tr>
+<tr class="odd">
+<td><code>y~a*x</code></td>
+<td>the same and also includes the main effects</td>
+</tr>
+<tr class="even">
+<td><code>y~a/x</code></td>
+<td>interaction between variables a and x (nested)</td>
+</tr>
+<tr class="odd">
+<td><code>y~(a+b+c)^2</code></td>
+<td>includes all two-way interactions</td>
+</tr>
+<tr class="even">
+<td><code>y ~ a*b*c-a:b:c</code> <span class="math inline">\(\;\;\;\)</span></td>
+<td>excludes the three-way interactionI() to use the original arithmetic operators</td>
+</tr>
+</tbody>
+</table>
+<div id="interaktion-zweier-binarer-variablen" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Interaktion zweier binärer Variablen</h3>
+<p>Es seien <span class="math inline">\(D_1\)</span> und <span class="math inline">\(D_2\)</span> zwei Dummies. Die Regression</p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 D_{1i} + \beta_2 D_{2i} + \beta_3 (D_{1i} \times D_{2i}) + \varepsilon_i\]</span></p>
+<p>lässt zu, dass der Effekt von <span class="math inline">\(D_1\)</span> auf <span class="math inline">\(y\)</span> mit <span class="math inline">\(D_2\)</span> variiert, denn</p>
+<p><span class="math display">\[E(y_i|D_1, D_2 = 0) = \beta_0 + \beta_1 D_{1i}\]</span> <span class="math display">\[E(y_i|D_1, D_2 = 1) = (\beta_0 + \beta_2) + (\beta_1 + \beta_3) D_{1i}\]</span></p>
+</div>
+<div id="interaktion-einer-metrischen-und-einer-binaren-variable" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Interaktion einer metrischen und einer binären Variable</h3>
+<p>Es sei <span class="math inline">\(D_i\)</span> eine binäre und <span class="math inline">\(X_i\)</span> eine metrische Variable. Die Regression</p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_{i} + \beta_2 D_{i} + \beta_3 (x_{i} \times D_{i}) + \varepsilon_i\]</span> lässt zu, dass der Effekt von <span class="math inline">\(x_i\)</span> auf <span class="math inline">\(y\)</span> mit <span class="math inline">\(D_i\)</span> variiert, denn</p>
+<p><span class="math display">\[E(y_i|x_i, D_i = 0) = \beta_0 + \beta_1 x_{i}\]</span> <span class="math display">\[E(y_i|x_i, D_i = 1) = (\beta_0 + \beta_2) + (\beta_1 + \beta_3) x_{i}\]</span></p>
+<p><img src="linear_model_files/figure-html/inter2-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interaktion-zweier-metrischen-variablen" class="section level3">
+<h3><span class="header-section-number">7.1.3</span> Interaktion zweier metrischen Variablen</h3>
+<p>Im Regressionsmodell mit zwei metrischen Variablen <span class="math inline">\(x_1\)</span> und <span class="math inline">\(x_2\)</span></p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \beta_3 (x_{1i} \times x_{2i}) + \varepsilon_i\]</span></p>
+<p>lässt der Interaktionsterm (<span class="math inline">\(x_{1i} \times x_{2i}\)</span>) zu, dass der Effekt der einen Variable jeweils vom Niveau der anderen Variable abhängt, d.h.</p>
+<p><span class="math display">\[\frac{\Delta y}{\Delta x_1} = \beta_1 + \beta_3 x_2 \text{  und  } \frac{\Delta y}{\Delta x_2} = \beta_1 + \beta_3 x_1\]</span></p>
+<p>Zudem lässt sich zeigen, dass bei einer Veränderung <span class="math inline">\(\Delta x_1\)</span> und <span class="math inline">\(\Delta x_2\)</span></p>
+<p><span class="math display">\[\Delta y = (\beta_1 + \beta_3 x_2) \Delta x_1 + (\beta_2 + \beta_3 x_1) \Delta x_2 + \beta_3 \Delta x_1 \Delta x_2\]</span></p>
+<p><img src="linear_model_files/figure-html/inter3-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="logarithmus" class="section level2">
+<h2><span class="header-section-number">7.2</span> Logarithmus</h2>
+<p>Wenn der Zusammenhang zwischen X und Y zwar nicht linear ist, jedoch eine prozentuale Veränderung von X einen konstanten Effekt auf Y hat, bietet sich der natürliche Logarithmus (die Inverse der Exponentialfunktion) an. Die Logarithmusfunktion ist steiler für kleine Werte von X und flacher für große Werte von X. Sie ist nur für positive Werte von X definiert und monoton steigend.</p>
+<p>Die Log Transformation der Residuen ermöglicht es den Einfluss von Ausreißer zu kontrollieren und Heteroskedatsie beheben. Außerdem Zensierte Variablen für OLS nicht geeignet. Log Transformiert schon. <strong>Das Prinzip:</strong> Eine kleine Veränderung entlang der Logarithmusfktion enstpricht in etwa der prozentualen Veränderung von x, da für kleine Werte von <span class="math inline">\(\Delta x/x\)</span> gilt.</p>
+<p><span class="math display">\[
+log(x + \Delta x) -log(x) \approx \frac{\Delta x}{x} \%
+\]</span></p>
+<p>Zu unterscheiden sind drei Fälle.</p>
+<ol style="list-style-type: decimal">
+<li>X wird logarithmiert, Y nicht - das lineare-log Modell (Lin-Log)</li>
+<li>Y wird logarithmiert, X nicht - das log-lineare Modell (Log-Lin)</li>
+<li>X und Y werden logarithmiert - das Log-Log Modell</li>
+</ol>
+<div id="lin-log" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Lin-Log</h3>
+<p>In diesem Fall wird x logarithmiert, y hingegen nicht:</p>
+<!-- y_i = \beta_0 + x_i^\beta + \varepsilon_i \rightarrow  -->
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 log(x_{1i}) + \varepsilon_i
+\]</span></p>
+<p>Welchen Effekt hat in diesem Fall eine Veränderung von X auf Y?</p>
+<p><span class="math display">\[\Delta y_i = (\beta_0 + \beta_1 log(x+\Delta x)) - (\beta_0+\beta_1 log(x)) \\
+= \beta_1[ln(x+\Delta x) -log(x)] \approx \beta_1(\Delta x/x)\]</span></p>
+<p>Demnach entspricht ein ANstieg von <span class="math inline">\(x\)</span> um 1%, d.h. <span class="math inline">\(\Delta x/x = 0.01\)</span>, verändert um <span class="math inline">\(0.01 \beta_1\)</span> Einheiten.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_unlog &lt;-<span class="st"> </span><span class="kw">lm</span>(gov_cens <span class="op">~</span><span class="st"> </span>infl, dat) 
+fit_linlog &lt;-<span class="st"> </span><span class="kw">lm</span>(gov_cens <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(infl), dat) 
+<span class="kw">summary</span>(fit_linlog)</code></pre></div>
+</div>
+<div id="log-lin" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> Log-Lin</h3>
+<span class="math display">\[\begin{align*} 
+log(y_i) &amp; = \beta_0 + \beta_1 x_{1i} + \varepsilon_i \\
+&amp; = e^{\beta_0 + \beta_1 x_{1i} + \varepsilon_i}
+\end{align*}\]</span>
+<ul>
+<li>Multiplikative Struktur.</li>
+<li>Semi-Log-Modell</li>
+<li>Die abhängige Variable ist logarithmisch transformiert. <span class="math inline">\(\beta\)</span> misst hierbei die Elastizität von y im Bezug auf x.</li>
+<li>Fragestellung: Um wieviel Prozent ändert sich y, wenn x um eine Einheit erhöht wird? (prozentuale Aussagen)</li>
+<li>Eine Steigerung von X um eine Einheit verändert Y um <span class="math inline">\(100 \times \beta_1\%\)</span></li>
+</ul>
+<span class="math display">\[\begin{align*} 
+log(y_i + \Delta y) - log(y) = &amp; (\beta_0 + \beta_1 (x+\Delta x)) -(\beta_0 + \beta_1 x)\\
+= &amp; \beta_1 \Delta x \approx \frac{\Delta y}{y}
+\end{align*}\]</span>
+<p><span class="math display">\[
+\beta = \frac{d\;\;log(y)}{d\;\;x}
+\]</span></p>
+</div>
+<div id="log-log" class="section level3">
+<h3><span class="header-section-number">7.2.3</span> Log-Log</h3>
+<p><span class="math display">\[
+log(y_i) = \beta_0 + \beta_1 log(x_{1i}) + \varepsilon_i
+\]</span></p>
+<span class="math display">\[\begin{align*} 
+log(y_i) &amp; = \beta_0 + log(\beta_1 x_{1i}) + \varepsilon_i \\
+&amp; = e^{\beta_0 + \beta_1 log(x_{1i}) + \varepsilon_i} \\
+&amp; = e^{\beta_0} e^{\beta_1 log(x_{1i})} e^{\varepsilon_i} \\
+&amp; = e^{\beta_0} e^{log(x_{1i})^{\beta_1}} e^{\varepsilon_i} \\
+&amp; = e^{\beta_0} x_{1i}^{\beta_1}x_{2i}^{\beta_2} e^{\varepsilon_i}
+\end{align*}\]</span>
+<p>Welchen Effekt hat in diesem Fall eine Veränderung von X auf Y?</p>
+<span class="math display">\[\begin{align*} 
+ln(y + \Delta y)- ln(y) = &amp; (\beta_0 + \beta_1 ln(x + \Delta x)) - (\beta_0 + \beta_1 log(x)) \\
+ &amp; = \beta_1 \frac{\Delta x}{x} \approx \frac{\Delta y}{y}
+\end{align*}\]</span>
+<p>Eine Steigerung von x um <span class="math inline">\(1\%\)</span> verändert y um <span class="math inline">\(\beta_1\)</span> Prozent.</p>
+<p>Log-lineare-Modell (constant elasticity model) * Multiplikative Struktur. * Wert von <span class="math inline">\(x_1\)</span> hängt von <span class="math inline">\(x_2\)</span> ab. * Die abhängige und die unabhängige Variablen werden logarithmisch transformiert. * Beziehung zwischen Varianz und Mittelwert kann durch diese Transformation getilgt werden. * Problem - wenn Datensatz Nullen enth¨alt, * <span class="math inline">\(\beta\)</span> misst hierbei die Elastizität von y im Bezug auf x (daher auchModell mit konstanten Elastizitäten genannt). * Fragestellung: Um wieviel Prozent ändert sich y, wenn x um ein Prozent erhöht wird?</p>
+<p>Marginaler Effekt:</p>
+<p><span class="math display">\[
+\beta = \frac{d\;\;log(y)}{d\;\;log(x)}
+\]</span></p>
+</div>
+</div>
+<div id="polynome" class="section level2">
+<h2><span class="header-section-number">7.3</span> Polynome</h2>
+<p>Eine nicht-lineare Regressionsfunktion N-ter Ordnung lautet:</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 x_i + \beta_2 x^2_i + \beta_3 x^3_i+ \dots+\beta_p x^n
+\]</span></p>
+<p>Mit solch einer Modellierung kann eine Assoziation unter Umständen besser approximieren als eine lineare Funktion. Dabei gilt allgemein: je höher das Polynom, desto flexibler kann sich die Funktion an die Daten anpassen. Zawr wird die Punktwolke genauer approximiert, doch verlieren wir Freiheitsgerade und erhalten schlechte Prognosen für neue Datenpunkte (Bias-Varianz-Tradeoff) (Stock/Waston, Kap. 8.2). Regressionen mit Polynomen höher Ordnung sollten nur im schrittweisen Vergelich zu weniger komplexen Modellen ihre Nützlichkeit erweisen.</p>
+<p>Zwei Möglichkeiten die Ordnung eines Polynoms zu bestimmen:</p>
+<ol style="list-style-type: decimal">
+<li>Theorie geleitet</li>
+<li>Heuristik durch Vergleich
+<ul>
+<li>Schätze das Modell mit einem maximalen Polynom von X (erfahrungsgemäß r=4 oder r=5)</li>
+<li>Teste die Hypothese <span class="math inline">\(H_0 : \beta_r = 0\)</span> mittels der t-Statistik</li>
+<li>Falls H0 nicht verworfen werden kann: Schätze das Modell mit r-1 +Wiederhole (2) und (3) bis der Koeffizient der höchsten Potenz von X signifikant ist.</li>
+</ul></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(engage_soc <span class="op">~</span><span class="st"> </span>gov_effect, <span class="dt">data =</span> dat)
+fit_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(engage_soc <span class="op">~</span><span class="st"> </span>gov_effect <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(gov_effect<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> dat)
+fit_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(engage_soc <span class="op">~</span><span class="st"> </span>gov_effect <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(gov_effect<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(gov_effect<span class="op">^</span><span class="dv">3</span>), <span class="dt">data =</span> dat)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit_<span class="dv">1</span>, fit_<span class="dv">3</span>)
+<span class="kw">anova</span>(fit_<span class="dv">2</span>, fit_<span class="dv">3</span>)</code></pre></div>
+<p>Da der p-Wert &gt; 0.05 ist, kann die Nullhypothese streng genommen nicht abgelehnt werden. Damit wäre das erste Modell mit weniger Komplexität zu bevorzugen. Da der Signifikanztest nur kanpp den Grenzwert unterschreitet kann trotzdem von einer Verbesserung gesprochen werden. Denn fit_3 die Punktwolke visuell betrachtet besser approximieren als eine lineare Regressionsfunktion.</p>
+<p>Der erwartete Effekt auf Y einer Veränderung von X in nicht-linearen Regressionsfunktionen Es ergibt keinen Sinn X1 zu variieren und X12 (oder weitere Funktionen von X1) konstant zu halten. Die erwartete Veränderung von Y infolge <span class="math inline">\(\Delta x_1\)</span> ist gegeben durch.</p>
+<p><span class="math display">\[ 
+\Delta y_i = E[y_i|x_1 + \Delta x_1, x_2,\dots, x_k] - E[y_i|x_1, x_2,\dots, x_k]
+\]</span></p>
+<p><span class="math display">\[ 
+\Delta y_i = f(x_1 + \Delta x_1, x_2,\dots, x_k) - f(x_1, x_2,\dots, x_k)
+\]</span></p>
+<table style="width:100%;">
+<colgroup>
+<col width="15%" />
+<col width="18%" />
+<col width="52%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Transformation</th>
+<th><code>R</code>-Code</th>
+<th>Model</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(log \; x\)</span></td>
+<td><span class="math inline">\(y \sim log(x)\)</span></td>
+<td><span class="math inline">\(y_i = \beta_0 + \beta_1 log(x_i) + \varepsilon_i\)</span></td>
+<td>Logarithmus</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x_i - \bar x\)</span></td>
+<td><span class="math inline">\(y \sim scale(x, scale = F)\)</span></td>
+<td><span class="math inline">\(y_i = \beta_0 + \beta_1 (x_i - \bar x) + \varepsilon_i\)</span></td>
+<td>Mittenzentrierung</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\frac{x_i-\bar x}{s_x}\)</span></td>
+<td><span class="math inline">\(y \sim scale(x)\)</span></td>
+<td><span class="math inline">\(y_i = \beta_0 + \beta_1 (\frac{x_i-\bar x}{s_x}) + \varepsilon_i\)</span></td>
+<td>z-Transformation</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sqrt{x}\)</span></td>
+<td><span class="math inline">\(y \sim sqrt(x)\)</span></td>
+<td><span class="math inline">\(y_i = \beta_0 + \beta_1 \sqrt{x_i} + \varepsilon_i\)</span></td>
+<td>Wurzel</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(x^2\)</span></td>
+<td><span class="math inline">\(y \sim poly(x, 2)\)</span></td>
+<td><span class="math inline">\(y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{1i}^2 + \varepsilon_i\)</span></td>
+<td>Quadrat</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x^3\)</span></td>
+<td><span class="math inline">\(y \sim poly(x, 3)\)</span></td>
+<td><span class="math inline">\(y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{1i}^2 + \beta_3 x_{1i}^3 + \varepsilon_i\)</span></td>
+<td>Kubik</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(e^x\)</span></td>
+<td><span class="math inline">\(y \sim exp(x)\)</span></td>
+<td><span class="math inline">\(y_i = \beta_0 + \beta_1 e^{x_i} + \varepsilon_i\)</span></td>
+<td>Exponentiell</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(1/x\)</span></td>
+<td><span class="math inline">\(y \sim I(1/x)\)</span></td>
+<td><span class="math inline">\(y_i = \beta_0 + \beta_1 1/x_i + \varepsilon_i\)</span></td>
+<td>Invers/ Reziprok</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(e^{-x}\)</span></td>
+<td><span class="math inline">\(y \sim exp(-x)\)</span></td>
+<td><span class="math inline">\(y_i = \beta_0 + \beta_1e^{-x_i} + \varepsilon_i\)</span></td>
+<td>Invers Exp.</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(elite_consul, gov_cens)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">text =</span> country), <span class="dt">color =</span> <span class="st">&quot;gray70&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(x, <span class="dv">2</span>),<span class="dt">se =</span> F) <span class="op">+</span>
+<span class="st">  </span><span class="co">#theme_few() +</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="st">&quot;Zensur Index&quot;</span>)
+
+<span class="co"># plotly::ggplotly(tooltip = c(&quot;country&quot;, &quot;Deliberation&quot;, &quot;Zensur&quot;))</span></code></pre></div>
+</div>
+<div id="multigruppenvergleich" class="section level2">
+<h2><span class="header-section-number">7.4</span> Multigruppenvergleich</h2>
+<p>Wird angewendet, wenn verschiedenen Regionen der Daten unterschiedliche Regressionsmodelle passen</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ess_ger <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(vote_right <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> .)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = imm_econ ~ income, data = .)
+## 
+## Coefficients:
+## (Intercept)       income  
+##     4.04071     -0.05416</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ess_ger <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(vote_right <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> .)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = imm_econ ~ income, data = .)
+## 
+## Coefficients:
+## (Intercept)       income  
+##      5.2574       0.1097</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#texreg::screenreg(list(g1, g2))</span></code></pre></div>
+</div>
+<div id="segmented-regression" class="section level2">
+<h2><span class="header-section-number">7.5</span> Segmented Regression</h2>
+<p>Segmented regression in einem Modell:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lhs &lt;-<span class="st"> </span><span class="cf">function</span> (x) <span class="kw">ifelse</span> (x <span class="op">&lt;</span><span class="st"> </span><span class="dv">35</span> ,<span class="dv">35</span> <span class="op">-</span>x ,<span class="dv">0</span>)
+rhs &lt;-<span class="st"> </span><span class="cf">function</span> (x) <span class="kw">ifelse</span> (x <span class="op">&lt;</span><span class="st"> </span><span class="dv">35</span> ,<span class="dv">0</span> ,x <span class="op">-</span><span class="dv">35</span>)
+gb &lt;-<span class="st"> </span><span class="kw">lm</span>(sr <span class="op">~</span><span class="st"> </span><span class="kw">lhs</span>( pop15 ) <span class="op">+</span><span class="st"> </span><span class="kw">rhs</span>( pop15 ) , savings )</code></pre></div>
+</div>
+<div id="splines" class="section level2">
+<h2><span class="header-section-number">7.6</span> Splines</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelldiagnose.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dimesnionality-reduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
