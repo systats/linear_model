@@ -7,14 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Lineare Regression</title>
   <meta name="description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen.">
-  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5.8 and GitBook 2.6.7">
 
   <meta property="og:title" content="Lineare Regression" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="Dieses Book hat zum Ziel moderne Ansätze der Statistik einfach aber detailiert zu erklären. Neben den theoretischen Konzepten werden verschiedene Darstellungsformate und Modelimplication besprochen." />
-  <meta name="github-repo" content="systats/linear_regression" />
+  <meta name="github-repo" content="systats/linear_model" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Lineare Regression" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Simon Roth">
 
 
-<meta name="date" content="2017-11-13">
+<meta name="date" content="2017-11-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -101,13 +101,83 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="part"><span><b>I Start</b></span></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einstieg</a></li>
-<li class="chapter" data-level="2" data-path="grundlagen.html"><a href="grundlagen.html"><i class="fa fa-check"></i><b>2</b> Grundlagen</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einstieg</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#desired-features"><i class="fa fa-check"></i><b>1.1</b> Desired Features</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installation-von-r-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installation von R/ RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#wie-r-lernen"><i class="fa fa-check"></i><b>1.3</b> Wie R Lernen?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#wozu-statistik"><i class="fa fa-check"></i><b>1.4</b> Wozu Statistik?</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#reserach-design"><i class="fa fa-check"></i><b>1.5</b> Reserach Design</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="grundlagen.html"><a href="grundlagen.html"><i class="fa fa-check"></i><b>2</b> Grundlagen</a><ul>
+<li class="chapter" data-level="2.1" data-path="grundlagen.html"><a href="grundlagen.html#messnivaus"><i class="fa fa-check"></i><b>2.1</b> Messnivaus</a></li>
+<li class="chapter" data-level="2.2" data-path="grundlagen.html"><a href="grundlagen.html#lageparameter"><i class="fa fa-check"></i><b>2.2</b> Lageparameter</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="grundlagen.html"><a href="grundlagen.html#modus"><i class="fa fa-check"></i><b>2.2.1</b> Modus</a></li>
+<li class="chapter" data-level="2.2.2" data-path="grundlagen.html"><a href="grundlagen.html#median"><i class="fa fa-check"></i><b>2.2.2</b> Median</a></li>
+<li class="chapter" data-level="2.2.3" data-path="grundlagen.html"><a href="grundlagen.html#default-sind-quartile"><i class="fa fa-check"></i><b>2.2.3</b> default sind Quartile</a></li>
+<li class="chapter" data-level="2.2.4" data-path="grundlagen.html"><a href="grundlagen.html#median-und-2.-quartil-sind-identisch"><i class="fa fa-check"></i><b>2.2.4</b> Median und 2. Quartil sind identisch</a></li>
+<li class="chapter" data-level="2.2.5" data-path="grundlagen.html"><a href="grundlagen.html#dezile"><i class="fa fa-check"></i><b>2.2.5</b> Dezile</a></li>
+<li class="chapter" data-level="2.2.6" data-path="grundlagen.html"><a href="grundlagen.html#percentile"><i class="fa fa-check"></i><b>2.2.6</b> Percentile</a></li>
+<li class="chapter" data-level="2.2.7" data-path="grundlagen.html"><a href="grundlagen.html#mean"><i class="fa fa-check"></i><b>2.2.7</b> Mean</a></li>
+<li class="chapter" data-level="2.2.8" data-path="grundlagen.html"><a href="grundlagen.html#mode-median-mean-im-vergleich"><i class="fa fa-check"></i><b>2.2.8</b> Mode, Median &amp; Mean im Vergleich</a></li>
+<li class="chapter" data-level="2.2.9" data-path="grundlagen.html"><a href="grundlagen.html#uniqe-as-levels"><i class="fa fa-check"></i><b>2.2.9</b> uniqe as levels!!!</a></li>
+<li class="chapter" data-level="2.2.10" data-path="grundlagen.html"><a href="grundlagen.html#helper-function-for-mode"><i class="fa fa-check"></i><b>2.2.10</b> helper function for Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="grundlagen.html"><a href="grundlagen.html#streuungsparameter"><i class="fa fa-check"></i><b>2.3</b> Streuungsparameter</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="grundlagen.html"><a href="grundlagen.html#varianz"><i class="fa fa-check"></i><b>2.3.1</b> Varianz</a></li>
+<li class="chapter" data-level="2.3.2" data-path="grundlagen.html"><a href="grundlagen.html#standardabweichung"><i class="fa fa-check"></i><b>2.3.2</b> Standardabweichung</a></li>
+<li class="chapter" data-level="2.3.3" data-path="grundlagen.html"><a href="grundlagen.html#geometrie"><i class="fa fa-check"></i><b>2.3.3</b> Geometrie</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="grundlagen.html"><a href="grundlagen.html#kovarianz"><i class="fa fa-check"></i><b>2.4</b> Kovarianz</a></li>
+<li class="chapter" data-level="2.5" data-path="grundlagen.html"><a href="grundlagen.html#korrelation"><i class="fa fa-check"></i><b>2.5</b> Korrelation</a></li>
+</ul></li>
 <li class="part"><span><b>II Lieneare Regression</b></span></li>
-<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a></li>
-<li class="chapter" data-level="4" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html"><i class="fa fa-check"></i><b>4</b> LM Modellauswahl</a></li>
-<li class="chapter" data-level="5" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>5</b> Reporting</a></li>
-<li class="chapter" data-level="6" data-path="modelldiagnose.html"><a href="modelldiagnose.html"><i class="fa fa-check"></i><b>6</b> Modelldiagnose</a></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#geometrie-1"><i class="fa fa-check"></i><b>3.1</b> Geometrie</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#simple-lineare-regression"><i class="fa fa-check"></i><b>3.2</b> Simple Lineare Regression</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#interpretation-der-koeffizienten"><i class="fa fa-check"></i><b>3.3</b> Interpretation der Koeffizienten</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#logik-von-signifkanztest"><i class="fa fa-check"></i><b>3.3.1</b> Logik von Signifkanztest</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#konfidenzintervall"><i class="fa fa-check"></i><b>3.3.2</b> Konfidenzintervall</a></li>
+<li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#nullhypothesentest"><i class="fa fa-check"></i><b>3.3.3</b> Nullhypothesentest</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#dummies"><i class="fa fa-check"></i><b>3.4</b> Dummies</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#multivariate-regression"><i class="fa fa-check"></i><b>3.5</b> Multivariate Regression</a></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#standardisierung"><i class="fa fa-check"></i><b>3.6</b> Standardisierung</a></li>
+<li class="chapter" data-level="3.7" data-path="basics.html"><a href="basics.html#ols-schatzung"><i class="fa fa-check"></i><b>3.7</b> OLS Schätzung</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html"><i class="fa fa-check"></i><b>4</b> LM Modellauswahl</a><ul>
+<li class="chapter" data-level="4.1" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#gutemae"><i class="fa fa-check"></i><b>4.1</b> Gütemaße</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#r-squared"><i class="fa fa-check"></i><b>4.1.1</b> R Squared</a></li>
+<li class="chapter" data-level="4.1.2" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#adjusted-r-squared"><i class="fa fa-check"></i><b>4.1.2</b> Adjusted R Squared</a></li>
+<li class="chapter" data-level="4.1.3" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#rse"><i class="fa fa-check"></i><b>4.1.3</b> RSE</a></li>
+<li class="chapter" data-level="4.1.4" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#f-test"><i class="fa fa-check"></i><b>4.1.4</b> F-Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#modellvergleich"><i class="fa fa-check"></i><b>4.2</b> Modellvergleich</a></li>
+<li class="chapter" data-level="4.3" data-path="lm-modellauswahl.html"><a href="lm-modellauswahl.html#best-subset-selection"><i class="fa fa-check"></i><b>4.3</b> Best Subset Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>5</b> Reporting</a><ul>
+<li class="chapter" data-level="5.1" data-path="reporting.html"><a href="reporting.html#tabellen"><i class="fa fa-check"></i><b>5.1</b> Tabellen</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="reporting.html"><a href="reporting.html#stargazer"><i class="fa fa-check"></i><b>5.1.1</b> stargazer</a></li>
+<li class="chapter" data-level="5.1.2" data-path="reporting.html"><a href="reporting.html#texreg"><i class="fa fa-check"></i><b>5.1.2</b> texreg</a></li>
+<li class="chapter" data-level="5.1.3" data-path="reporting.html"><a href="reporting.html#sjplot"><i class="fa fa-check"></i><b>5.1.3</b> sjPlot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="reporting.html"><a href="reporting.html#show-me-your-model"><i class="fa fa-check"></i><b>5.2</b> Show me your model!</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="reporting.html"><a href="reporting.html#coefficient-plot-forest"><i class="fa fa-check"></i><b>5.2.1</b> Coefficient Plot (Forest)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="reporting.html"><a href="reporting.html#marginal-effects"><i class="fa fa-check"></i><b>5.2.2</b> Marginal Effects</a></li>
+<li class="chapter" data-level="5.2.3" data-path="reporting.html"><a href="reporting.html#predicting-values"><i class="fa fa-check"></i><b>5.2.3</b> Predicting values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="modelldiagnose.html"><a href="modelldiagnose.html"><i class="fa fa-check"></i><b>6</b> Modelldiagnose</a><ul>
+<li class="chapter" data-level="6.1" data-path="modelldiagnose.html"><a href="modelldiagnose.html#residuenanalyse"><i class="fa fa-check"></i><b>6.1</b> Residuenanalyse</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="modelldiagnose.html"><a href="modelldiagnose.html#linearitat-der-parameter"><i class="fa fa-check"></i><b>6.1.1</b> Linearität der Parameter</a></li>
+<li class="chapter" data-level="6.1.2" data-path="modelldiagnose.html"><a href="modelldiagnose.html#unabhangigkeit-der-residuen"><i class="fa fa-check"></i><b>6.1.2</b> Unabhängigkeit der Residuen</a></li>
+<li class="chapter" data-level="6.1.3" data-path="modelldiagnose.html"><a href="modelldiagnose.html#homoskedastizitat"><i class="fa fa-check"></i><b>6.1.3</b> Homoskedastizität</a></li>
+<li class="chapter" data-level="6.1.4" data-path="modelldiagnose.html"><a href="modelldiagnose.html#normalverteilung-der-residuen"><i class="fa fa-check"></i><b>6.1.4</b> Normalverteilung der Residuen</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="modelldiagnose.html"><a href="modelldiagnose.html#multikolinearitat"><i class="fa fa-check"></i><b>6.2</b> Multikolinearität</a></li>
+<li class="chapter" data-level="6.3" data-path="modelldiagnose.html"><a href="modelldiagnose.html#ausreier"><i class="fa fa-check"></i><b>6.3</b> Ausreißer</a></li>
+<li class="chapter" data-level="6.4" data-path="modelldiagnose.html"><a href="modelldiagnose.html#beipsiel"><i class="fa fa-check"></i><b>6.4</b> Beipsiel</a></li>
+<li class="chapter" data-level="" data-path="modelldiagnose.html"><a href="modelldiagnose.html#references"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="non-linearitat.html"><a href="non-linearitat.html"><i class="fa fa-check"></i><b>7</b> Non-Linearität</a><ul>
 <li class="chapter" data-level="7.1" data-path="non-linearitat.html"><a href="non-linearitat.html#interaktionen"><i class="fa fa-check"></i><b>7.1</b> Interaktionen</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="non-linearitat.html"><a href="non-linearitat.html#interaktion-zweier-binarer-variablen"><i class="fa fa-check"></i><b>7.1.1</b> Interaktion zweier binärer Variablen</a></li>
@@ -124,7 +194,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.5" data-path="non-linearitat.html"><a href="non-linearitat.html#segmented-regression"><i class="fa fa-check"></i><b>7.5</b> Segmented Regression</a></li>
 <li class="chapter" data-level="7.6" data-path="non-linearitat.html"><a href="non-linearitat.html#splines"><i class="fa fa-check"></i><b>7.6</b> Splines</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimesnionality Reduction</a></li>
+<li class="chapter" data-level="8" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimesnionality Reduction</a><ul>
+<li class="chapter" data-level="8.1" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#eigenvalues-eigenvectors"><i class="fa fa-check"></i><b>8.1</b> Eigenvalues/ Eigenvectors</a></li>
+<li class="chapter" data-level="8.2" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#k-means-clustering"><i class="fa fa-check"></i><b>8.2</b> k-Means Clustering</a></li>
+<li class="chapter" data-level="8.3" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#pca"><i class="fa fa-check"></i><b>8.3</b> PCA</a></li>
+<li class="chapter" data-level="8.4" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#exploratory-factor-analysis"><i class="fa fa-check"></i><b>8.4</b> Exploratory Factor Analysis</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -150,8 +225,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <span class="kw">library</span>(dplyr)
 ess_ger &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;DE&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age2 =</span> age<span class="op">*</span>age)
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;DE&quot;</span>)
 
 fit0 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> ess_ger)
 fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span>left_right <span class="op">+</span><span class="st"> </span>vote_right, <span class="dt">data =</span> ess_ger) 
@@ -441,9 +515,24 @@ fit_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">lm<
 <div id="segmented-regression" class="section level2">
 <h2><span class="header-section-number">7.5</span> Segmented Regression</h2>
 <p>Segmented regression in einem Modell:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lhs &lt;-<span class="st"> </span><span class="cf">function</span> (x) <span class="kw">ifelse</span> (x <span class="op">&lt;</span><span class="st"> </span><span class="dv">35</span> ,<span class="dv">35</span> <span class="op">-</span>x ,<span class="dv">0</span>)
-rhs &lt;-<span class="st"> </span><span class="cf">function</span> (x) <span class="kw">ifelse</span> (x <span class="op">&lt;</span><span class="st"> </span><span class="dv">35</span> ,<span class="dv">0</span> ,x <span class="op">-</span><span class="dv">35</span>)
-gb &lt;-<span class="st"> </span><span class="kw">lm</span>(sr <span class="op">~</span><span class="st"> </span><span class="kw">lhs</span>( pop15 ) <span class="op">+</span><span class="st"> </span><span class="kw">rhs</span>( pop15 ) , savings )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lhs &lt;-<span class="st"> </span><span class="cf">function</span> (x) <span class="kw">ifelse</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>, x, <span class="dv">0</span>)
+rhs &lt;-<span class="st"> </span><span class="cf">function</span> (x) <span class="kw">ifelse</span> (x <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span>, <span class="dv">0</span>, x)
+
+gb &lt;-<span class="st"> </span>ess_ger <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span><span class="kw">lhs</span>(age) <span class="op">+</span><span class="st"> </span><span class="kw">rhs</span>(age), <span class="dt">data =</span> .)
+gb</code></pre></div>
+<p>Diese Transformation kann auch auserhalb des Modells geschehen.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ess_ger <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">v1 =</span> <span class="kw">ifelse</span>(age <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>, age, <span class="dv">0</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">v2 =</span> <span class="kw">ifelse</span>(age <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span>, <span class="dv">0</span>, age)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">lm</span>(imm_econ <span class="op">~</span><span class="st"> </span>v1 <span class="op">+</span><span class="st"> </span>v2, <span class="dt">data =</span> .)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = imm_econ ~ v1 + v2, data = .)
+## 
+## Coefficients:
+## (Intercept)           v1           v2  
+##     5.98603      0.01377     -0.01718</code></pre>
 </div>
 <div id="splines" class="section level2">
 <h2><span class="header-section-number">7.6</span> Splines</h2>
@@ -467,7 +556,7 @@ gb &lt;-<span class="st"> </span><span class="kw">lm</span>(sr <span class="op">
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -503,9 +592,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
