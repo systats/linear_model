@@ -32,7 +32,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="non-linearitat.html">
+<link rel="prev" href="dimesnionality-reduction.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -109,11 +109,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>5</b> Reporting</a></li>
 <li class="chapter" data-level="6" data-path="modelldiagnose.html"><a href="modelldiagnose.html"><i class="fa fa-check"></i><b>6</b> Modelldiagnose</a></li>
 <li class="chapter" data-level="7" data-path="non-linearitat.html"><a href="non-linearitat.html"><i class="fa fa-check"></i><b>7</b> Non-Linearität</a></li>
-<li class="chapter" data-level="8" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimesnionality Reduction</a><ul>
-<li class="chapter" data-level="8.1" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#eigenvalues-eigenvectors"><i class="fa fa-check"></i><b>8.1</b> Eigenvalues/ Eigenvectors</a></li>
-<li class="chapter" data-level="8.2" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#k-means-clustering"><i class="fa fa-check"></i><b>8.2</b> k-Means Clustering</a></li>
-<li class="chapter" data-level="8.3" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#pca"><i class="fa fa-check"></i><b>8.3</b> PCA</a></li>
-<li class="chapter" data-level="8.4" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#exploratory-factor-analysis"><i class="fa fa-check"></i><b>8.4</b> Exploratory Factor Analysis</a></li>
+<li class="chapter" data-level="8" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimesnionality Reduction</a></li>
+<li class="chapter" data-level="9" data-path="eigenvalues-eigenvectors.html"><a href="eigenvalues-eigenvectors.html"><i class="fa fa-check"></i><b>9</b> Eigenvalues/ Eigenvectors</a><ul>
+<li class="chapter" data-level="9.1" data-path="eigenvalues-eigenvectors.html"><a href="eigenvalues-eigenvectors.html#k-means-clustering"><i class="fa fa-check"></i><b>9.1</b> k-Means Clustering</a></li>
+<li class="chapter" data-level="9.2" data-path="eigenvalues-eigenvectors.html"><a href="eigenvalues-eigenvectors.html#pca"><i class="fa fa-check"></i><b>9.2</b> PCA</a></li>
+<li class="chapter" data-level="9.3" data-path="eigenvalues-eigenvectors.html"><a href="eigenvalues-eigenvectors.html#exploratory-factor-analysis"><i class="fa fa-check"></i><b>9.3</b> Exploratory Factor Analysis</a></li>
 </ul></li>
 </ul>
 
@@ -132,10 +132,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dimesnionality-reduction" class="section level1">
-<h1><span class="header-section-number">8</span> Dimesnionality Reduction</h1>
-<div id="eigenvalues-eigenvectors" class="section level2">
-<h2><span class="header-section-number">8.1</span> Eigenvalues/ Eigenvectors</h2>
+<div id="eigenvalues-eigenvectors" class="section level1">
+<h1><span class="header-section-number">9</span> Eigenvalues/ Eigenvectors</h1>
 <p>Eigen = “latent” or characteristic</p>
 <ul>
 <li><span class="math inline">\(x\)</span> eigenvector</li>
@@ -146,9 +144,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>PCA: unsupervised</li>
 <li>t-SNE: Supervised</li>
 </ul>
-</div>
 <div id="k-means-clustering" class="section level2">
-<h2><span class="header-section-number">8.2</span> k-Means Clustering</h2>
+<h2><span class="header-section-number">9.1</span> k-Means Clustering</h2>
 <p>Kmeans is one of the most popular and simple algorithm to discover underlying structures in your data. The goal of kmeans is simple, split your data in k different groups represented by their mean. The mean of each group is assumed to be a good summary of each observation of this cluster.</p>
 <p>Different type of clustering algorithms exist such a k-means, k-medoids, hierarchical clustering …</p>
 <p>Basically, this equation means that we are looking for the k centers which will minimize the distance between them and the points of their cluster. This is an optimization problem, but since the function, we want to minimize is not convex and some variables are binary, it cannot be solved in classic ways with gradient descent. The usual way to solve it is the following:</p>
@@ -207,7 +204,7 @@ res &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw
 <p><img src="linear_model_files/figure-html/purrr-2.png" width="576" /></p>
 </div>
 <div id="pca" class="section level2">
-<h2><span class="header-section-number">8.3</span> PCA</h2>
+<h2><span class="header-section-number">9.2</span> PCA</h2>
 <ul>
 <li><a href="http://rpubs.com/sinhrks/plot_pca" class="uri">http://rpubs.com/sinhrks/plot_pca</a></li>
 <li><a href="http://enhancedatascience.com/2017/07/31/machine-learning-explained-dimensionality-reduction/" class="uri">http://enhancedatascience.com/2017/07/31/machine-learning-explained-dimensionality-reduction/</a></li>
@@ -257,7 +254,7 @@ imm_pca1 &lt;-<span class="st"> </span>imm_dat1 <span class="op">%&gt;%</span>
 <p><img src="linear_model_files/figure-html/pca-1.png" width="576" /></p>
 </div>
 <div id="exploratory-factor-analysis" class="section level2">
-<h2><span class="header-section-number">8.4</span> Exploratory Factor Analysis</h2>
+<h2><span class="header-section-number">9.3</span> Exploratory Factor Analysis</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imm_efa &lt;-<span class="st"> </span>imm_dat1 <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">factanal</span>(.,<span class="dt">factors =</span> <span class="dv">2</span>, <span class="dt">scores =</span> <span class="st">&#39;regression&#39;</span>)
 
@@ -271,7 +268,7 @@ imm_pca1 &lt;-<span class="st"> </span>imm_dat1 <span class="op">%&gt;%</span>
           </div>
         </div>
       </div>
-<a href="non-linearitat.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dimesnionality-reduction.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

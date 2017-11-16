@@ -25,7 +25,7 @@
 <meta name="author" content="Simon Roth">
 
 
-<meta name="date" content="2017-11-13">
+<meta name="date" content="2017-11-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -98,8 +98,9 @@
 <li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#geometrie-1"><i class="fa fa-check"></i><b>3.1</b> Geometrie</a></li>
 <li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#simple-lineare-regression"><i class="fa fa-check"></i><b>3.2</b> Simple Lineare Regression</a></li>
 <li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#interpretation-der-koeffizienten"><i class="fa fa-check"></i><b>3.3</b> Interpretation der Koeffizienten</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#konfidenzintervall"><i class="fa fa-check"></i><b>3.3.1</b> Konfidenzintervall</a></li>
-<li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#nullhypothesentest"><i class="fa fa-check"></i><b>3.3.2</b> Nullhypothesentest</a></li>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#logik-von-signifkanztest"><i class="fa fa-check"></i><b>3.3.1</b> Logik von Signifkanztest</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#konfidenzintervall"><i class="fa fa-check"></i><b>3.3.2</b> Konfidenzintervall</a></li>
+<li class="chapter" data-level="3.3.3" data-path="basics.html"><a href="basics.html#nullhypothesentest"><i class="fa fa-check"></i><b>3.3.3</b> Nullhypothesentest</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#dummies"><i class="fa fa-check"></i><b>3.4</b> Dummies</a></li>
 <li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#multivariate-regression"><i class="fa fa-check"></i><b>3.5</b> Multivariate Regression</a></li>
@@ -157,9 +158,10 @@
 <li class="chapter" data-level="7.6" data-path="non-linearitat.html"><a href="non-linearitat.html#splines"><i class="fa fa-check"></i><b>7.6</b> Splines</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html"><i class="fa fa-check"></i><b>8</b> Dimesnionality Reduction</a><ul>
-<li class="chapter" data-level="8.1" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#k-means-clustering"><i class="fa fa-check"></i><b>8.1</b> k-Means Clustering</a></li>
-<li class="chapter" data-level="8.2" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#pca"><i class="fa fa-check"></i><b>8.2</b> PCA</a></li>
-<li class="chapter" data-level="8.3" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#exploratory-factor-analysis"><i class="fa fa-check"></i><b>8.3</b> Exploratory Factor Analysis</a></li>
+<li class="chapter" data-level="8.1" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#eigenvalues-eigenvectors"><i class="fa fa-check"></i><b>8.1</b> Eigenvalues/ Eigenvectors</a></li>
+<li class="chapter" data-level="8.2" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#k-means-clustering"><i class="fa fa-check"></i><b>8.2</b> k-Means Clustering</a></li>
+<li class="chapter" data-level="8.3" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#pca"><i class="fa fa-check"></i><b>8.3</b> PCA</a></li>
+<li class="chapter" data-level="8.4" data-path="dimesnionality-reduction.html"><a href="dimesnionality-reduction.html#exploratory-factor-analysis"><i class="fa fa-check"></i><b>8.4</b> Exploratory Factor Analysis</a></li>
 </ul></li>
 </ul>
 
@@ -181,7 +183,7 @@
 <div id="header">
 <h1 class="title">Lineare Regression</h1>
 <h4 class="author"><em>Simon Roth</em></h4>
-<h4 class="date"><em>2017-11-13</em></h4>
+<h4 class="date"><em>2017-11-16</em></h4>
 </div>
 <div id="einstieg" class="section level1">
 <h1><span class="header-section-number">1</span> Einstieg</h1>
@@ -251,7 +253,6 @@
 </ul></li>
 <li>Auswerten und Schlußfolgerungen ziehen</li>
 </ol>
-<p><img align="center" width="70%" src="images/pop/population.png"></p>
 
 </div>
 </div>
